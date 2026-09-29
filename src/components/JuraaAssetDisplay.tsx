@@ -1,44 +1,116 @@
 import React, { useState } from 'react';
-import { JuraaLogo } from './JuraaLogo';
-import { Sparkles, Layers, Image as ImageIcon } from 'lucide-react';
+import { Maximize2, X, Sparkles, Smartphone, CheckCircle2 } from 'lucide-react';
+import { soundEngine } from '../utils/soundEngine';
+
+export const JURAA_ORIGINAL_LOGO = '/assets/creative/juraa/logo.png';
+export const JURAA_HERO_MOCKUP = '/assets/creative/juraa/juraa_hero.png';
+
+export const JURAA_AUTHENTIC_APP_SCREENS = [
+  {
+    id: 'j1',
+    src: '/assets/creative/juraa/j1.PNG',
+    title: 'Daily Medication Timeline',
+    titleArabic: 'جدول الجرعات اليومي',
+    description: 'Clean time-segmented schedule separating morning, afternoon, and evening prescriptions with clear dose metrics.',
+    badge: 'SCREEN 01 · TIMELINE',
+  },
+  {
+    id: 'j2',
+    src: '/assets/creative/juraa/j2.PNG',
+    title: 'Adherence & Health Analytics',
+    titleArabic: 'سجل الالتزام الدوائي',
+    description: 'Weekly compliance percentage tracking, streak motivation, and refill alerts designed with high empathy and zero clinical fear.',
+    badge: 'SCREEN 02 · ADHERENCE',
+  },
+  {
+    id: 'j4',
+    src: '/assets/creative/juraa/j4.PNG',
+    title: 'Family Care & Shared Monitoring',
+    titleArabic: 'رعاية العائلة والمشاركة',
+    description: 'Caretaker circle sync allowing elderly parents and family members to share confirmation of completed daily doses.',
+    badge: 'SCREEN 03 · FAMILY SYNC',
+  },
+];
+
+interface JuraaLogoImageProps {
+  className?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'hero';
+  theme?: 'light' | 'dark' | 'glass' | 'transparent';
+  bordered?: boolean;
+}
+
+export const JuraaLogoImage: React.FC<JuraaLogoImageProps> = ({
+  className = '',
+  size = 'lg',
+  theme = 'transparent',
+  bordered = false,
+}) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  // Preserve original 1:1 aspect ratio with precise bounding sizes
+  const sizeClasses = {
+    xs: 'h-8 max-w-[80px]',
+    sm: 'h-12 max-w-[120px]',
+    md: 'h-16 max-w-[160px]',
+    lg: 'h-24 max-w-[220px]',
+    xl: 'h-32 max-w-[280px]',
+    hero: 'h-40 sm:h-48 md:h-56 max-w-[360px]',
+  }[size];
+
+  const themeClasses = {
+    light: 'bg-white shadow-sm',
+    dark: 'bg-[#173635] shadow-md',
+    glass: 'bg-white/80 backdrop-blur-sm shadow-sm',
+    transparent: 'bg-transparent',
+  }[theme];
+
+  return (
+    <div
+      className={`relative inline-flex items-center justify-center p-3 ${themeClasses} ${
+        bordered ? 'border border-[#0F6663]/20 rounded-xl' : ''
+      } ${className}`}
+    >
+      {!hasError ? (
+        <img
+          src={JURAA_ORIGINAL_LOGO}
+          alt="JURAA Official Brand Logo"
+          onError={() => setHasError(true)}
+          onLoad={() => setIsLoaded(true)}
+          className={`w-auto ${sizeClasses} object-contain transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ imageRendering: 'auto' }}
+        />
+      ) : (
+        <div className="flex flex-col items-center justify-center p-4 text-center border border-[#0F6663]/30 bg-white/60">
+          <span className="font-mono text-xs uppercase tracking-widest text-[#0F6663] font-semibold">
+            JURAA / جُرعة
+          </span>
+          <span className="text-[10px] font-mono text-[#173635]/60 mt-1">
+            Authoritative Brand Logo
+          </span>
+        </div>
+      )}
+    </div>
+  );
+};
 
 interface JuraaMockupImageProps {
   className?: string;
   aspectRatio?: '16/9' | '4/3' | '1/1' | 'auto';
   showOverlay?: boolean;
-  priority?: boolean;
+  allowZoom?: boolean;
 }
-
-const MOCKUP_CANDIDATES = [
-  '/src/assets/images/juraa_mockup.png',
-  '/src/assets/images/0DBB20B2-8170-4520-BED2-4F6343639EDB.png',
-  '/src/assets/images/6566488C-687E-41B0-B504-4BD967C33ED7.png',
-];
-
-const LOGO_CANDIDATES = [
-  '/src/assets/creative/juraa/logo.png',
-  '/src/assets/images/6566488C-687E-41B0-B504-4BD967C33ED7.png',
-  '/src/assets/images/0DBB20B2-8170-4520-BED2-4F6343639EDB.png',
-];
 
 export const JuraaMockupImage: React.FC<JuraaMockupImageProps> = ({
   className = '',
   aspectRatio = '16/9',
   showOverlay = true,
+  allowZoom = false,
 }) => {
-  const [candidateIndex, setCandidateIndex] = useState(0);
-  const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const currentSrc = MOCKUP_CANDIDATES[candidateIndex];
-
-  const handleImageError = () => {
-    if (candidateIndex < MOCKUP_CANDIDATES.length - 1) {
-      setCandidateIndex((prev) => prev + 1);
-    } else {
-      setHasError(true);
-    }
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const aspectClass =
     aspectRatio === '16/9'
@@ -49,124 +121,169 @@ export const JuraaMockupImage: React.FC<JuraaMockupImageProps> = ({
       ? 'aspect-square'
       : '';
 
-  return (
-    <div
-      className={`relative w-full ${aspectClass} overflow-hidden bg-[#EAE6DC] border border-[#0F6663]/20 group ${className}`}
-    >
-      {!hasError ? (
-        <>
-          <img
-            src={currentSrc}
-            alt="JURAA Brand Identity & Digital/Physical Mockup"
-            referrerPolicy="no-referrer"
-            onError={handleImageError}
-            onLoad={() => setIsLoaded(true)}
-            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
-              isLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-          {!isLoaded && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#F5F3EF]">
-              <JuraaLogo variant="symbol" size="md" />
-              <span className="text-xs font-mono uppercase tracking-widest text-[#0F6663] mt-3">
-                Loading JURAA Mockup...
-              </span>
-            </div>
-          )}
-        </>
-      ) : (
-        /* Fallback Visual Identity Container */
-        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-br from-[#F5F3EF] via-[#EAE6DC] to-[#DCECEA]/60 space-y-4">
-          <div className="p-4 bg-white/80 backdrop-blur-sm border border-[#0F6663]/20 rounded-2xl shadow-sm">
-            <JuraaLogo variant="primary" size="lg" />
-          </div>
-
-          <div className="space-y-1.5 max-w-sm">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#0F6663]/10 text-[#0F6663] text-[11px] font-mono uppercase tracking-wider">
-              <Sparkles className="w-3 h-3" />
-              <span>Authentic Client Asset Slot</span>
-            </div>
-            <p className="text-xs text-[#173635]/80 font-light">
-              Place your mockup in <code className="px-1 py-0.5 bg-white/70 font-mono text-[10px]">src/assets/images/juraa_mockup.png</code>
-            </p>
-          </div>
-        </div>
-      )}
-
-      {showOverlay && (
-        <div className="absolute inset-0 bg-gradient-to-t from-[#173635]/80 via-transparent to-transparent pointer-events-none flex flex-col justify-end p-6 text-white">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <span className="text-[10px] font-mono tracking-widest uppercase text-[#55B6AE] bg-[#173635]/90 px-2 py-0.5 border border-[#55B6AE]/40 inline-block mb-1">
-                JURAA · BRAND SYSTEM
-              </span>
-              <p className="text-sm sm:text-base font-light text-white/95">
-                The Shape of Care · Identity & Applications
-              </p>
-            </div>
-            <span className="text-xs font-mono text-[#DCECEA]" dir="rtl">
-              جرعتك في وقتها
-            </span>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-interface JuraaLogoImageProps {
-  className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  variant?: 'primary' | 'symbol' | 'horizontal';
-}
-
-export const JuraaLogoImage: React.FC<JuraaLogoImageProps> = ({
-  className = '',
-  size = 'lg',
-  variant = 'primary',
-}) => {
-  const [candidateIndex, setCandidateIndex] = useState(0);
-  const [hasError, setHasError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const currentSrc = LOGO_CANDIDATES[candidateIndex];
-
-  const handleImageError = () => {
-    if (candidateIndex < LOGO_CANDIDATES.length - 1) {
-      setCandidateIndex((prev) => prev + 1);
-    } else {
-      setHasError(true);
+  const handleOpen = () => {
+    if (allowZoom) {
+      soundEngine.playEditorialClick();
+      setIsModalOpen(true);
     }
   };
 
-  const dimClass =
-    size === 'sm'
-      ? 'max-h-12 max-w-[120px]'
-      : size === 'md'
-      ? 'max-h-20 max-w-[180px]'
-      : size === 'lg'
-      ? 'max-h-28 max-w-[240px]'
-      : 'max-h-36 max-w-[300px]';
+  return (
+    <>
+      <div
+        onClick={handleOpen}
+        className={`relative w-full ${aspectClass} overflow-hidden bg-[#EAE6DC] border border-[#0F6663]/20 group ${
+          allowZoom ? 'cursor-zoom-in' : ''
+        } ${className}`}
+      >
+        <img
+          src={JURAA_HERO_MOCKUP}
+          alt="JURAA Brand Identity & Application Ecosystem"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
 
-  if (hasError) {
-    return <JuraaLogo variant={variant} size={size} className={className} />;
-  }
+        {!isLoaded && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-[#F5F3EF]">
+            <JuraaLogoImage size="sm" />
+            <span className="text-xs font-mono uppercase tracking-widest text-[#0F6663] mt-3">
+              Loading JURAA Artwork...
+            </span>
+          </div>
+        )}
+
+        {showOverlay && (
+          <div className="absolute inset-0 bg-gradient-to-t from-[#173635]/85 via-transparent to-transparent pointer-events-none flex flex-col justify-end p-6 text-white">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#55B6AE] bg-[#173635]/90 px-2 py-0.5 border border-[#55B6AE]/40 inline-block mb-1">
+                  JURAA · THE SHAPE OF CARE
+                </span>
+                <p className="text-sm sm:text-base font-light text-white/95">
+                  Authentic Application Ecosystem & Mobile Product
+                </p>
+              </div>
+              <span className="text-xs font-mono text-[#DCECEA]" dir="rtl">
+                جرعتك في وقتها
+              </span>
+            </div>
+          </div>
+        )}
+
+        {allowZoom && (
+          <div className="absolute top-3 right-3 p-2 bg-[#173635]/80 text-white/90 backdrop-blur-sm border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
+            <Maximize2 className="w-4 h-4" />
+          </div>
+        )}
+      </div>
+
+      {isModalOpen && (
+        <div
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 bg-[#173635]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
+        >
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-6 right-6 text-white/80 hover:text-white p-2 border border-white/20 rounded-full"
+            aria-label="Close image zoom"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <img
+            src={JURAA_HERO_MOCKUP}
+            alt="JURAA Mockup Expanded"
+            className="max-h-[90vh] max-w-[90vw] object-contain shadow-2xl"
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+export const JuraaAppScreens: React.FC<{ className?: string }> = ({ className = '' }) => {
+  const [selectedScreen, setSelectedScreen] = useState<(typeof JURAA_AUTHENTIC_APP_SCREENS)[0] | null>(null);
 
   return (
-    <div className={`relative flex items-center justify-center ${className}`}>
-      <img
-        src={currentSrc}
-        alt="JURAA Official Brand Logo"
-        referrerPolicy="no-referrer"
-        onError={handleImageError}
-        onLoad={() => setIsLoaded(true)}
-        className={`object-contain ${dimClass} transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <JuraaLogo variant={variant} size={size} />
+    <div className={`space-y-6 ${className}`}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {JURAA_AUTHENTIC_APP_SCREENS.map((screen) => (
+          <div
+            key={screen.id}
+            onClick={() => {
+              soundEngine.playEditorialClick();
+              setSelectedScreen(screen);
+            }}
+            className="group cursor-pointer bg-white border border-[#0F6663]/20 overflow-hidden shadow-sm hover:border-[#0F6663] hover:shadow-xl transition-all flex flex-col"
+          >
+            {/* Screen Header Badge */}
+            <div className="px-4 py-2.5 bg-[#F5F3EF] border-b border-[#0F6663]/15 flex items-center justify-between text-xs font-mono">
+              <span className="text-[#0F6663] font-semibold">{screen.badge}</span>
+              <span className="text-[#173635]/60" dir="rtl">{screen.titleArabic}</span>
+            </div>
+
+            {/* Screen Image Container with Object-Contain to avoid clipping */}
+            <div className="relative p-4 sm:p-6 bg-gradient-to-b from-[#F5F3EF]/60 to-white flex items-center justify-center overflow-hidden aspect-[4/5] sm:aspect-square">
+              <img
+                src={screen.src}
+                alt={screen.title}
+                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 drop-shadow-md"
+              />
+              <div className="absolute bottom-3 right-3 p-1.5 bg-[#173635]/80 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+              </div>
+            </div>
+
+            {/* Screen Caption */}
+            <div className="p-5 border-t border-[#0F6663]/10 flex-1 flex flex-col justify-between space-y-2 bg-white">
+              <div>
+                <h4 className="text-base font-semibold text-[#173635] tracking-tight">
+                  {screen.title}
+                </h4>
+                <p className="text-xs text-[#173635]/70 leading-relaxed font-light mt-1.5">
+                  {screen.description}
+                </p>
+              </div>
+              <div className="pt-2 text-[11px] font-mono text-[#0F6663] flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#55B6AE]" />
+                <span>Authentic Application UI Flow</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Fullscreen Zoom Modal */}
+      {selectedScreen && (
+        <div
+          onClick={() => setSelectedScreen(null)}
+          className="fixed inset-0 z-50 bg-[#173635]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
+        >
+          <button
+            onClick={() => setSelectedScreen(null)}
+            className="absolute top-6 right-6 text-white/80 hover:text-white p-2 border border-white/20 rounded-full"
+            aria-label="Close screen view"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-2xl bg-white border border-[#0F6663]/30 p-4 sm:p-6 shadow-2xl flex flex-col items-center space-y-4 cursor-default"
+          >
+            <div className="w-full flex items-center justify-between border-b border-[#0F6663]/15 pb-2 font-mono text-xs text-[#0F6663]">
+              <span className="font-semibold">{selectedScreen.badge}</span>
+              <span className="text-sm font-bold" dir="rtl">{selectedScreen.titleArabic}</span>
+            </div>
+            <img
+              src={selectedScreen.src}
+              alt={selectedScreen.title}
+              className="max-h-[65vh] w-auto object-contain drop-shadow-xl"
+            />
+            <p className="text-xs text-[#173635]/80 text-center max-w-lg font-light">
+              {selectedScreen.description}
+            </p>
+          </div>
         </div>
       )}
     </div>

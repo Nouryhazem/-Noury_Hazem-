@@ -116,7 +116,7 @@ export const JURAA_CASE_STUDY: JuraaCaseStudyData = {
       'JURAA is an Arabic-first medication and daily-organization app. I developed a 30-day go-to-market strategy built around the habits and relationships that give medication management meaning: caring for yourself, checking on someone you love, and maintaining consistency through a busy day.',
     objective:
       "The objective was to establish JURAA's relevance in everyday life before asking people to download it.",
-    heroImage: '/src/assets/images/juraa_healthcare_brand_1790649694769.jpg',
+    heroImage: '/assets/creative/juraa/juraa_hero.png',
     status: 'Proposed Go-to-Market Strategy',
   },
   challenge: {

@@ -145,8 +145,8 @@ export const JURAA_BRAND_DATA: JuraaBrandData = {
     brandIdeaArabic: 'جرعتك في وقتها',
     brandIdeaEnglish: 'The Shape of Care',
     territory: 'THE SHAPE OF CARE',
-    heroImage: '/src/assets/images/juraa_mockup.png',
-    logoImage: '/src/assets/images/juraa_logo.png',
+    heroImage: '/assets/creative/juraa/juraa_hero.png',
+    logoImage: '/assets/creative/juraa/logo.png',
     status: 'Completed Brand Architecture System',
   },
   foundation: {
@@ -375,7 +375,7 @@ export const JURAA_BRAND_DATA: JuraaBrandData = {
       'The JURAA visual system extends directly into its Arabic-first app interface, bringing the same calm color language, typography, and recognizable iconography into everyday medication organization.',
       'The interface prioritizes cognitive ease: large touch targets, natural right-to-left flow, and reassuring visual confirmations replace stressful alarm clatter.',
     ],
-    threePhonesImage: '/src/assets/images/juraa_mockup.png',
+    threePhonesImage: '/assets/creative/juraa/juraa_hero.png',
     screens: [
       {
         num: '01',
@@ -441,7 +441,7 @@ export const JURAA_BRAND_DATA: JuraaBrandData = {
       'The identity extends beyond digital touchpoints into selected physical brand applications, including clinician folios, patient appointment stationery, and executive collateral.',
       'Each application preserves the exact same symbol, color language, and Cairo typography while celebrating high-grade tactile materials: blind-embossed leather, heavy cotton cardstock, and enamel brass pins.',
     ],
-    mockupImage: '/src/assets/images/juraa_mockup.png',
+    mockupImage: '/assets/creative/juraa/juraa_hero.png',
     collateral: [
       {
         num: '01',

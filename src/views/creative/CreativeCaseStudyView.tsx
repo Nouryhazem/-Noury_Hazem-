@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { CreativeChapterData, CreativeExecutionItem } from '../../data/creativeData';
-import { CreativeImage } from '../../components/creative/CreativeImage';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  CreativeChapterData,
+  CreativeSlide,
+  getProjectSlides,
+} from '../../data/creativeData';
 import { soundEngine } from '../../utils/soundEngine';
 import { MonogramN } from '../../components/MonogramN';
 import {
   ArrowLeft,
   ArrowRight,
-  ArrowUpRight,
-  CheckCircle2,
-  Layers,
-  Sparkles,
+  ChevronLeft,
+  ChevronRight,
   Maximize2,
-  Calendar,
-  Compass,
-  Palette,
-  Eye,
-  Type,
-  Lightbulb,
+  X,
+  Sparkles,
+  Layers,
 } from 'lucide-react';
 
 interface CreativeCaseStudyViewProps {
   data: CreativeChapterData;
+  slug?: string;
   onBack: () => void;
   onNavigateToProject: (slug: string) => void;
   onNavigateContact: () => void;
@@ -30,38 +29,124 @@ interface CreativeCaseStudyViewProps {
 
 export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
   data,
+  slug,
   onBack,
   onNavigateToProject,
   onNavigateContact,
   nextProjectSlug,
   nextProjectTitle,
 }) => {
-  const [activeExecutionIndex, setActiveExecutionIndex] = useState<number>(0);
+  const c0 = data.chapter00;
 
+  // Derive project slug from name to retrieve full original designs
+  const projectNameUpper = c0.projectName.toUpperCase();
+  const derivedSlug = projectNameUpper.includes('JURAA')
+    ? 'juraa-creative-campaign'
+    : projectNameUpper.includes('DIPDUX')
+    ? 'dipdux-analytica'
+    : projectNameUpper.includes('ROOM')
+    ? 'the-room-snd96'
+    : projectNameUpper.includes('AE CREATIVE')
+    ? 'ae-creative-snd96'
+    : projectNameUpper.includes('RATIO')
+    ? 'ratio-snd96'
+    : projectNameUpper.includes('BÉARU') || projectNameUpper.includes('BEARU')
+    ? 'bearu-snd96'
+    : projectNameUpper.includes('REEF ASIA')
+    ? 'reef-asia-kitchens'
+    : '';
+
+  const projectSlug = slug || derivedSlug;
+
+  const slides: CreativeSlide[] = getProjectSlides(projectSlug, data);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+  const [isZoomOpen, setIsZoomOpen] = useState<boolean>(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+
+  const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to top and reset slide on project change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     soundEngine.playAirySweep(true);
-  }, [data.chapter00.projectName]);
+    setCurrentSlideIndex(0);
+  }, [c0.projectName]);
 
-  const scrollToSection = (id: string) => {
-    soundEngine.playEditorialClick();
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Keep thumbnail in view
+  useEffect(() => {
+    if (thumbnailContainerRef.current) {
+      const activeThumb = thumbnailContainerRef.current.children[currentSlideIndex] as HTMLElement;
+      if (activeThumb) {
+        activeThumb.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'center',
+          block: 'nearest',
+        });
+      }
+    }
+  }, [currentSlideIndex]);
+
+  const handlePrevSlide = () => {
+    soundEngine.playMechanicalTick(1);
+    setCurrentSlideIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    soundEngine.playMechanicalTick(1);
+    setCurrentSlideIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleSelectSlide = (index: number) => {
+    if (index !== currentSlideIndex) {
+      soundEngine.playMechanicalTick(1);
+      setCurrentSlideIndex(index);
     }
   };
 
-  const c0 = data.chapter00;
-  const c1 = data.chapter01;
-  const c2 = data.chapter02;
-  const c3 = data.chapter03;
-  const c4 = data.chapter04;
-  const c5 = data.chapter05;
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isZoomOpen) {
+        if (e.key === 'Escape') setIsZoomOpen(false);
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        handlePrevSlide();
+      } else if (e.key === 'ArrowRight') {
+        handleNextSlide();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isZoomOpen, slides.length]);
+
+  // Touch swipe handling for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        handleNextSlide();
+      } else {
+        handlePrevSlide();
+      }
+    }
+    setTouchStartX(null);
+  };
+
+  const activeSlide = slides[currentSlideIndex] || slides[0];
 
   return (
     <article className="min-h-screen bg-[#F4F1E9] text-[#171717] selection:bg-[#315BFF] selection:text-white pt-24 pb-28">
       {/* ========================================================================= */}
-      {/* PERSISTENT TOP BREADCRUMB & METADATA BAR */}
+      {/* PERSISTENT TOP BREADCRUMB & RETURN LINK                                    */}
       {/* ========================================================================= */}
       <div className="sticky top-14 z-30 bg-[#F4F1E9]/95 backdrop-blur-md border-b border-[#171717]/10 py-3 transition-all">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
@@ -74,7 +159,9 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
           >
             <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
             <span>
-              {c0.parentCollection ? `Return to ${c0.parentCollection}` : 'Return to Creative Direction'}
+              {c0.parentCollection
+                ? `Return to ${c0.parentCollection}`
+                : 'Return to Creative Direction'}
             </span>
           </button>
 
@@ -93,454 +180,218 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
       </div>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 00: PROJECT INTRODUCTION */}
+      {/* PROJECT HEADER: TITLE, SHORT DESCRIPTION & CREATIVE ROLE                   */}
       {/* ========================================================================= */}
-      <header className="max-w-7xl mx-auto px-6 sm:px-8 pt-12 pb-16 border-b border-[#171717]/15">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          {/* Left: Project Headline & Narrative */}
-          <div className="lg:col-span-8 space-y-6">
-            <div className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-[#315BFF]">
-              <MonogramN size="sm" slashColor="#315BFF" inkColor="#171717" interactive={false} />
-              <span>
-                {c0.parentCollection ? `${c0.parentCollection} · ` : ''}
-                {c0.industry} · {c0.market}
+      <header className="max-w-7xl mx-auto px-6 sm:px-8 pt-10 pb-8">
+        <div className="max-w-4xl space-y-4">
+          {/* Metadata Badges */}
+          <div className="flex items-center gap-3 flex-wrap text-xs font-mono">
+            {c0.parentCollection ? (
+              <span className="px-2.5 py-1 bg-[#165B33] text-white uppercase tracking-widest text-[11px] font-semibold">
+                {c0.parentCollection}
               </span>
-            </div>
+            ) : (
+              <span className="px-2.5 py-1 bg-[#171717] text-white uppercase tracking-widest text-[11px] font-semibold">
+                Creative Direction
+              </span>
+            )}
 
-            <div className="space-y-3">
-              <div className="flex items-baseline gap-4 flex-wrap">
-                <h1 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#171717] leading-[1.05]">
-                  {c0.projectName}
-                </h1>
-                {c0.taglineArabic && (
-                  <span
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-xl sm:text-3xl text-[#171717]/60 font-bold"
-                    dir="rtl"
-                  >
-                    {c0.taglineArabic}
-                  </span>
-                )}
-              </div>
+            <span className="text-[#171717]/60 uppercase tracking-wider">
+              {c0.industry} · {c0.market}
+            </span>
 
-              <p className="text-2xl sm:text-3xl font-editorial italic text-[#171717]/90 leading-snug">
+            {c0.taglineArabic && (
+              <span className="text-[#315BFF] font-semibold text-xs" dir="rtl">
+                {c0.taglineArabic}
+              </span>
+            )}
+          </div>
+
+          {/* Large Project Title */}
+          <div className="space-y-2">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-light tracking-tight text-[#171717] leading-[1.02]">
+              {c0.projectName}
+            </h1>
+            {c0.tagline && (
+              <p className="text-xl sm:text-2xl font-editorial italic text-[#171717]/80">
                 &ldquo;{c0.tagline}&rdquo;
               </p>
-            </div>
+            )}
+          </div>
 
-            <p className="text-base sm:text-lg text-[#171717]/80 leading-relaxed font-light max-w-3xl">
-              {c0.introduction}
-            </p>
+          {/* Short Description */}
+          <p className="text-base sm:text-lg text-[#171717]/75 font-light leading-relaxed max-w-3xl">
+            {c0.introduction}
+          </p>
 
-            {/* Scope Tags */}
-            <div className="pt-2 space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-[#171717]/40 block">
-                Creative Disciplines:
+          {/* Creative Role & Disciplines Bar */}
+          <div className="pt-3 border-t border-[#171717]/10 flex flex-wrap items-center gap-x-8 gap-y-2 text-xs font-mono">
+            <div>
+              <span className="text-[#171717]/40 uppercase mr-1.5">CREATIVE ROLE:</span>
+              <span className="text-[#171717] font-semibold bg-[#171717]/5 px-2 py-0.5 border border-[#171717]/10">
+                {c0.role}
               </span>
-              <div className="flex flex-wrap gap-2">
-                {c0.disciplines.map((d, i) => (
-                  <span
-                    key={i}
-                    className="text-xs font-mono px-2.5 py-1 bg-white border border-[#171717]/10 text-[#171717]"
-                  >
-                    {d}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Project Dossier Card */}
-          <div className="lg:col-span-4 bg-white border border-[#171717]/15 p-6 sm:p-8 space-y-5 shadow-sm">
-            <div className="flex items-center justify-between pb-3 border-b border-[#171717]/10 text-[10px] font-mono uppercase tracking-widest text-[#315BFF]">
-              <span>Project Archive Dossier</span>
-              <span>{c0.year || '2026'}</span>
             </div>
 
-            <dl className="space-y-3 text-xs font-mono">
-              <div className="flex justify-between border-b border-[#171717]/5 pb-2">
-                <dt className="text-[#171717]/50 uppercase">Industry</dt>
-                <dd className="font-medium text-[#171717]">{c0.industry}</dd>
-              </div>
-              <div className="flex justify-between border-b border-[#171717]/5 pb-2">
-                <dt className="text-[#171717]/50 uppercase">Market</dt>
-                <dd className="font-medium text-[#171717]">{c0.market}</dd>
-              </div>
-              <div className="flex justify-between border-b border-[#171717]/5 pb-2">
-                <dt className="text-[#171717]/50 uppercase">Role</dt>
-                <dd className="font-medium text-[#171717]">{c0.role}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-[#171717]/50 uppercase">Status</dt>
-                <dd className="font-semibold text-[#315BFF]">{c0.projectStatus}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-
-        {/* Outstanding Hero Visual */}
-        <div className="mt-12">
-          <CreativeImage
-            src={c0.heroImage}
-            candidates={c0.heroImageCandidates}
-            alt={`${c0.projectName} Hero Artwork`}
-            aspectRatio="16/9"
-            showCaption={true}
-            caption={`${c0.projectName} — ${c0.tagline}`}
-            className="shadow-md"
-          />
-        </div>
-
-        {/* Quick Chapter Navigation Bar */}
-        <div className="mt-10 pt-4 border-t border-[#171717]/10 hidden md:flex items-center justify-between text-[11px] font-mono text-[#171717]/60">
-          <span className="uppercase text-[#171717]/40 tracking-wider">Chapter Navigation:</span>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => scrollToSection('chapter-01')}
-              className="hover:text-[#315BFF] cursor-pointer"
-            >
-              01 The Challenge
-            </button>
-            <span>/</span>
-            <button
-              onClick={() => scrollToSection('chapter-02')}
-              className="hover:text-[#315BFF] cursor-pointer"
-            >
-              02 The Big Idea
-            </button>
-            <span>/</span>
-            <button
-              onClick={() => scrollToSection('chapter-03')}
-              className="hover:text-[#315BFF] cursor-pointer"
-            >
-              03 Art Direction
-            </button>
-            <span>/</span>
-            <button
-              onClick={() => scrollToSection('chapter-04')}
-              className="hover:text-[#315BFF] cursor-pointer font-semibold text-[#315BFF]"
-            >
-              04 Executions
-            </button>
-            <span>/</span>
-            <button
-              onClick={() => scrollToSection('chapter-05')}
-              className="hover:text-[#315BFF] cursor-pointer"
-            >
-              05 Contribution
-            </button>
+            <div>
+              <span className="text-[#171717]/40 uppercase mr-1.5">GALLERY:</span>
+              <span className="text-[#315BFF] font-semibold">
+                {slides.length} Original Supplied Designs
+              </span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 01: THE CREATIVE CHALLENGE */}
+      {/* PREMIUM IMAGE-FIRST SLIDESHOW                                              */}
       {/* ========================================================================= */}
-      <section
-        id="chapter-01"
-        className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#171717]/15"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4 space-y-3">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#315BFF] block">
-              CHAPTER 01 / THE CREATIVE CHALLENGE
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-[#171717] leading-tight">
-              {c1.headline}
-            </h2>
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 mt-2 space-y-6">
+        {/* Main Presentation Stage */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full h-[52vh] sm:h-[64vh] md:h-[72vh] max-h-[760px] min-h-[420px] bg-[#141414] border border-[#171717]/20 shadow-2xl overflow-hidden flex items-center justify-center select-none group"
+        >
+          {/* Subtle Ambient Radial Lighting */}
+          <div className="absolute inset-0 bg-radial from-white/[0.04] to-transparent pointer-events-none" />
+
+          {/* Active Image (object-contain ensures zero cropping for all aspect ratios) */}
+          {activeSlide && (
+            <img
+              key={activeSlide.id}
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              className="max-h-full max-w-full w-auto h-auto object-contain p-4 sm:p-8 drop-shadow-2xl transition-all duration-300 ease-out"
+              style={{ imageRendering: 'auto' }}
+            />
+          )}
+
+          {/* Bottom Progress Bar: visually indicates scroll progress through gallery */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-20 pointer-events-none">
+            <div
+              className="h-full bg-[#315BFF] transition-all duration-300 ease-out"
+              style={{
+                width: `${slides.length > 0 ? ((currentSlideIndex + 1) / slides.length) * 100 : 0}%`,
+              }}
+            />
           </div>
 
-          <div className="lg:col-span-8 space-y-8">
-            <p className="text-base sm:text-lg text-[#171717]/85 font-light leading-relaxed">
-              {c1.challengeBrief}
-            </p>
+          {/* Top Left: Slide Counter Badge */}
+          <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-[#171717]/85 backdrop-blur-md border border-white/15 px-3 py-1.5 text-white font-mono text-xs">
+            <span className="text-[#315BFF] font-bold">
+              {String(currentSlideIndex + 1).padStart(2, '0')}
+            </span>
+            <span className="text-white/40">/</span>
+            <span className="text-white/70">
+              {String(slides.length).padStart(2, '0')}
+            </span>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#171717]/10">
-              {/* Objectives */}
-              <div className="p-6 bg-white border border-[#171717]/10 space-y-3">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#315BFF] block">
-                  Communication Objectives
-                </span>
-                <ul className="space-y-2 text-xs sm:text-sm font-light text-[#171717]/80">
-                  {c1.communicationObjectives.map((obj, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#315BFF] mt-1.5 shrink-0" />
-                      <span>{obj}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Top Right: Fullscreen Zoom Inspection Button */}
+          <button
+            onClick={() => {
+              soundEngine.playEditorialClick();
+              setIsZoomOpen(true);
+            }}
+            className="absolute top-4 right-4 z-20 p-2.5 bg-[#171717]/85 backdrop-blur-md border border-white/15 text-white hover:text-[#315BFF] hover:border-[#315BFF] transition-all cursor-pointer shadow-lg"
+            title="Inspect artwork in full resolution"
+            aria-label="Inspect artwork in full resolution"
+          >
+            <Maximize2 className="w-4 h-4" />
+          </button>
 
-              {/* Constraints */}
-              <div className="p-6 bg-white border border-[#171717]/10 space-y-3">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#171717]/60 block">
-                  Brand & Cultural Constraints
-                </span>
-                <ul className="space-y-2 text-xs sm:text-sm font-light text-[#171717]/80">
-                  {c1.brandConstraints.map((con, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#171717]/40 mt-1.5 shrink-0" />
-                      <span>{con}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          {/* Navigation Controls: Previous Slide */}
+          <button
+            onClick={handlePrevSlide}
+            aria-label="Previous slide"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-4 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white/90 hover:text-white border border-white/20 hover:border-[#315BFF] backdrop-blur-md transition-all cursor-pointer opacity-90 sm:opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-            <div className="text-xs font-mono text-[#171717]/60 pt-2">
-              <span className="text-[#171717]/40 uppercase mr-1">TARGET AUDIENCE:</span>
-              <span>{c1.intendedAudience}</span>
-            </div>
+          {/* Navigation Controls: Next Slide */}
+          <button
+            onClick={handleNextSlide}
+            aria-label="Next slide"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-4 rounded-full bg-[#171717]/80 hover:bg-[#171717] text-white/90 hover:text-white border border-white/20 hover:border-[#315BFF] backdrop-blur-md transition-all cursor-pointer opacity-90 sm:opacity-0 group-hover:opacity-100 hover:scale-105 active:scale-95 shadow-xl"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+
+          {/* Mobile Swipe Hint */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] font-mono uppercase tracking-widest text-white/40 pointer-events-none sm:hidden">
+            Swipe left or right
           </div>
         </div>
-      </section>
 
-      {/* ========================================================================= */}
-      {/* CHAPTER 02: THE BIG IDEA */}
-      {/* ========================================================================= */}
-      <section
-        id="chapter-02"
-        className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#171717]/15 bg-[#EAE6DC]/40"
-      >
-        <div className="space-y-12">
-          <div className="max-w-4xl space-y-4">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#315BFF] block">
-              CHAPTER 02 / THE BIG IDEA
-            </span>
-            <div className="flex items-baseline gap-3 flex-wrap">
-              <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[#171717]">
-                {c2.conceptName}
-              </h2>
-              {c2.conceptNameArabic && (
-                <span
-                  style={{ fontFamily: '"Cairo", sans-serif' }}
-                  className="text-2xl sm:text-3xl font-bold text-[#171717]/50"
-                  dir="rtl"
-                >
-                  {c2.conceptNameArabic}
-                </span>
-              )}
-            </div>
-            <p className="text-lg sm:text-xl font-editorial italic text-[#171717]/90 leading-snug">
-              &ldquo;{c2.headline}&rdquo;
-            </p>
-          </div>
-
-          {/* Featured Idea Artwork Showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className="lg:col-span-7">
-              <CreativeImage
-                src={c2.featuredVisual}
-                candidates={c2.featuredVisualCandidates}
-                alt={`${c2.conceptName} Visual Hook`}
-                aspectRatio="1/1"
-                className="shadow-lg"
-                badge="Central Creative Hook"
-              />
-            </div>
-
-            <div className="lg:col-span-5 space-y-6">
-              <div className="p-6 bg-white border border-[#171717]/15 space-y-3">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#315BFF]">
-                  The Visual Hook
-                </span>
-                <p className="text-sm sm:text-base font-light text-[#171717] leading-relaxed">
-                  {c2.visualHook}
-                </p>
-              </div>
-
-              {c2.verbalHook && (
-                <div className="p-6 bg-white border border-[#171717]/15 space-y-3">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#171717]/60">
-                    The Verbal Hook
+        {/* Slide Caption & Context Bar */}
+        {activeSlide && (
+          <div className="p-6 bg-white border border-[#171717]/15 shadow-sm space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#171717]/10">
+              <div className="flex items-center gap-3 flex-wrap">
+                {activeSlide.category && (
+                  <span className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-widest bg-[#171717] text-white font-semibold">
+                    {activeSlide.category}
                   </span>
-                  <div className="flex items-baseline gap-3 flex-wrap">
-                    <p className="text-base sm:text-lg font-editorial italic text-[#171717]">
-                      &ldquo;{c2.verbalHook}&rdquo;
-                    </p>
-                    {c2.verbalHookArabic && (
-                      <span className="text-sm font-mono text-[#315BFF]" dir="rtl">
-                        {c2.verbalHookArabic}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                )}
+                <h3 className="text-lg sm:text-xl font-medium text-[#171717] tracking-tight">
+                  {activeSlide.title}
+                </h3>
+              </div>
+
+              {activeSlide.titleArabic && (
+                <span className="text-sm font-semibold text-[#171717]/60 font-mono" dir="rtl">
+                  {activeSlide.titleArabic}
+                </span>
               )}
-
-              <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#171717]/40 block">
-                  Strategic Rationale:
-                </span>
-                <p className="text-xs sm:text-sm text-[#171717]/80 font-light leading-relaxed">
-                  {c2.strategicRationale}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* CHAPTER 03: ART DIRECTION */}
-      {/* ========================================================================= */}
-      <section
-        id="chapter-03"
-        className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#171717]/15"
-      >
-        <div className="space-y-12">
-          <div className="max-w-4xl space-y-3">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#315BFF] block">
-              CHAPTER 03 / ART DIRECTION & CRAFT
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[#171717]">
-              {c3.headline}
-            </h2>
-            <p className="text-base sm:text-lg text-[#171717]/80 font-light leading-relaxed pt-2">
-              {c3.artDirectionOverview}
-            </p>
-          </div>
-
-          {/* Techniques Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {c3.techniques.map((tech, idx) => (
-              <div key={idx} className="p-6 bg-white border border-[#171717]/10 space-y-2">
-                <span className="text-[10px] font-mono text-[#315BFF] block">
-                  Technique 0{idx + 1}
-                </span>
-                <h3 className="text-base font-semibold text-[#171717]">{tech.title}</h3>
-                <p className="text-xs text-[#171717]/70 font-light leading-relaxed">
-                  {tech.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Palette & Typography */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-6 border-t border-[#171717]/10">
-            {/* Color Swatches */}
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#171717]/50 block">
-                Color Direction & Allocation
-              </span>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {c3.palette.map((color, idx) => (
-                  <div key={idx} className="p-3 bg-white border border-[#171717]/10 space-y-2">
-                    <div
-                      style={{ backgroundColor: color.hex }}
-                      className="w-full h-12 border border-[#171717]/10 shadow-inner"
-                    />
-                    <div className="space-y-0.5">
-                      <div className="text-xs font-semibold text-[#171717]">{color.name}</div>
-                      <div className="text-[10px] font-mono text-[#171717]/50">{color.hex}</div>
-                      <div className="text-[10px] text-[#171717]/70 font-light">{color.role}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            {/* Typography Notes */}
-            <div className="lg:col-span-5 p-6 bg-white border border-[#171717]/10 space-y-3">
-              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#315BFF]">
-                <Type className="w-3.5 h-3.5" />
-                <span>Typographic Integration</span>
-              </div>
-              <p className="text-xs sm:text-sm text-[#171717]/80 font-light leading-relaxed">
-                {c3.typographyNotes}
+            {activeSlide.caption && (
+              <p className="text-xs sm:text-sm text-[#171717]/75 font-light leading-relaxed">
+                {activeSlide.caption}
               </p>
-            </div>
+            )}
           </div>
-        </div>
-      </section>
+        )}
 
-      {/* ========================================================================= */}
-      {/* CHAPTER 04: CREATIVE EXECUTIONS (PRIMARY GALLERY) */}
-      {/* ========================================================================= */}
-      <section
-        id="chapter-04"
-        className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#171717]/15 bg-white"
-      >
-        <div className="space-y-12">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#171717]/10 pb-6">
-            <div className="space-y-2 max-w-2xl">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#315BFF] block">
-                CHAPTER 04 / CREATIVE EXECUTIONS
-              </span>
-              <h2 className="text-3xl sm:text-5xl font-light tracking-tight text-[#171717]">
-                {c4.headline}
-              </h2>
-              <p className="text-sm sm:text-base text-[#171717]/70 font-light">{c4.overview}</p>
-            </div>
-
-            <span className="text-xs font-mono text-[#171717]/50 whitespace-nowrap">
-              {c4.executions.length} Documented Workpieces · Click image for fullscreen
+        {/* Interactive Thumbnail Filmstrip */}
+        <div className="space-y-3 pt-2">
+          <div className="flex items-center justify-between text-xs font-mono text-[#171717]/60">
+            <span className="uppercase tracking-widest text-[11px] font-semibold">
+              ORIGINAL GALLERY STRIP ({slides.length} DESIGNS)
+            </span>
+            <span className="hidden sm:inline text-[11px]">
+              Click any thumbnail or use keyboard arrows ← →
             </span>
           </div>
 
-          {/* Editorial Asymmetric Artwork Showcase */}
-          <div className="space-y-16">
-            {c4.executions.map((item, idx) => {
-              const isEven = idx % 2 === 0;
-
+          <div
+            ref={thumbnailContainerRef}
+            className="flex items-center gap-3 overflow-x-auto pb-3 pt-1 scroll-smooth no-scrollbar"
+          >
+            {slides.map((slide, idx) => {
+              const isActive = idx === currentSlideIndex;
               return (
-                <div
-                  key={item.id}
-                  className="p-6 sm:p-10 bg-[#F4F1E9] border border-[#171717]/10 space-y-6"
+                <button
+                  key={slide.id}
+                  onClick={() => handleSelectSlide(idx)}
+                  className={`relative shrink-0 w-24 sm:w-28 md:w-32 aspect-square bg-[#1B1B1B] border transition-all duration-300 cursor-pointer overflow-hidden group/thumb ${
+                    isActive
+                      ? 'border-[#315BFF] ring-2 ring-[#315BFF]/50 scale-[1.02] shadow-md opacity-100'
+                      : 'border-[#171717]/20 opacity-60 hover:opacity-95 hover:border-[#171717]'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-4 pb-3 border-b border-[#171717]/10 text-xs font-mono">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[#315BFF] font-semibold">EXECUTION 0{idx + 1}</span>
-                      <span className="text-[#171717]/30">/</span>
-                      <span className="uppercase text-[#171717]/70">{item.category}</span>
-                    </div>
-
-                    {item.titleArabic && (
-                      <span className="text-[#171717]/50 font-mono" dir="rtl">
-                        {item.titleArabic}
-                      </span>
-                    )}
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-full object-contain p-1.5 transition-transform duration-300 group-hover/thumb:scale-105"
+                  />
+                  <div className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-[#171717]/90 text-[9px] font-mono text-white">
+                    {String(idx + 1).padStart(2, '0')}
                   </div>
-
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    {/* Visual Media */}
-                    <div className={isEven ? 'lg:col-span-8' : 'lg:col-span-8 lg:order-2'}>
-                      <CreativeImage
-                        src={item.primaryImage}
-                        candidates={item.candidateImages}
-                        alt={item.title}
-                        aspectRatio={item.aspectRatio}
-                        allowZoom={true}
-                        className="shadow-sm"
-                      />
-                    </div>
-
-                    {/* Metadata & Analysis */}
-                    <div className={isEven ? 'lg:col-span-4 space-y-4' : 'lg:col-span-4 lg:order-1 space-y-4'}>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#171717] tracking-tight">
-                        {item.title}
-                      </h3>
-
-                      <p className="text-xs sm:text-sm text-[#171717]/80 font-light leading-relaxed">
-                        {item.caption}
-                      </p>
-
-                      {item.captionArabic && (
-                        <p
-                          style={{ fontFamily: '"Cairo", sans-serif' }}
-                          className="text-xs text-[#171717]/60 leading-relaxed pt-2 border-t border-[#171717]/10"
-                          dir="rtl"
-                        >
-                          {item.captionArabic}
-                        </p>
-                      )}
-
-                      <div className="pt-2 text-[10px] font-mono text-[#315BFF] flex items-center gap-1.5">
-                        <Maximize2 className="w-3 h-3" />
-                        <span>Click visual to view high-resolution fullscreen</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -548,70 +399,22 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 05: CREATIVE CONTRIBUTION */}
+      {/* NEXT PROJECT / COLLECTION NAVIGATION                                      */}
       {/* ========================================================================= */}
-      <section
-        id="chapter-05"
-        className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#171717]/15"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4 space-y-3">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#315BFF] block">
-              CHAPTER 05 / CREATIVE CONTRIBUTION
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-light tracking-tight text-[#171717]">
-              {c5.headline}
-            </h2>
-          </div>
-
-          <div className="lg:col-span-8 space-y-8">
-            <p className="text-base sm:text-lg text-[#171717]/85 font-light leading-relaxed">
-              {c5.summary}
-            </p>
-
-            {/* Verified Responsibilities */}
-            <div className="p-6 bg-white border border-[#171717]/10 space-y-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#315BFF] block">
-                Verified Author Responsibilities
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {c5.responsibilities.map((resp, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-xs font-light text-[#171717]">
-                    <CheckCircle2 className="w-4 h-4 text-[#315BFF] shrink-0" />
-                    <span>{resp}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Approach Statement */}
-            <div className="p-6 bg-[#EAE6DC]/60 border-l-2 border-[#315BFF] space-y-2">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#171717]/60 block">
-                Creative Director&apos;s Conclusion:
-              </span>
-              <p className="text-sm sm:text-base font-editorial italic text-[#171717]/90 leading-relaxed">
-                &ldquo;{c5.creativeApproachStatement}&rdquo;
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* FINAL PROJECT NAVIGATION & CALL TO ACTION */}
-      {/* ========================================================================= */}
-      <footer className="max-w-7xl mx-auto px-6 sm:px-8 pt-16">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 border-b border-[#171717]/10 pb-12">
+      <footer className="max-w-7xl mx-auto px-6 sm:px-8 mt-16 pt-8 border-t border-[#171717]/15">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <button
             onClick={() => {
               soundEngine.playEditorialClick();
               onBack();
             }}
-            className="text-xs font-mono uppercase tracking-wider text-[#171717]/70 hover:text-[#315BFF] transition-colors cursor-pointer inline-flex items-center gap-2"
+            className="text-xs font-mono uppercase tracking-wider text-[#171717]/70 hover:text-[#315BFF] transition-colors inline-flex items-center gap-2"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3.5 h-3.5" />
             <span>
-              {c0.parentCollection ? `Back to ${c0.parentCollection}` : 'Back to Creative Direction'}
+              {c0.parentCollection
+                ? `Back to ${c0.parentCollection}`
+                : 'Back to Creative Archive'}
             </span>
           </button>
 
@@ -621,35 +424,51 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
                 soundEngine.playEditorialClick();
                 onNavigateToProject(nextProjectSlug);
               }}
-              className="px-6 py-3.5 bg-[#171717] text-[#F4F1E9] hover:bg-[#315BFF] transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer inline-flex items-center gap-2"
+              className="px-6 py-3.5 bg-[#171717] text-white hover:bg-[#315BFF] transition-colors text-xs font-mono uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer shadow-md group"
             >
-              <span>Next Creative Project: {nextProjectTitle || 'Explore Next'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Next Project{nextProjectTitle ? `: ${nextProjectTitle}` : ''}</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
             </button>
           )}
         </div>
-
-        {/* Contact Strip */}
-        <div className="pt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div className="space-y-1">
-            <span className="text-xs font-mono text-[#315BFF] uppercase tracking-widest">
-              Available for Commission
-            </span>
-            <p className="text-sm font-light text-[#171717]/80">
-              Ready to architect an ambitious creative campaign or visual identity?
-            </p>
-          </div>
-          <button
-            onClick={() => {
-              soundEngine.playEditorialClick();
-              onNavigateContact();
-            }}
-            className="px-6 py-3 bg-[#315BFF] text-white hover:bg-[#171717] transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer whitespace-nowrap"
-          >
-            Contact Nouri Hazem
-          </button>
-        </div>
       </footer>
+
+      {/* ========================================================================= */}
+      {/* FULLSCREEN ARTWORK INSPECTION MODAL                                        */}
+      {/* ========================================================================= */}
+      {isZoomOpen && activeSlide && (
+        <div
+          onClick={() => setIsZoomOpen(false)}
+          className="fixed inset-0 z-50 bg-[#121212]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out animate-in fade-in duration-200"
+        >
+          <button
+            onClick={() => setIsZoomOpen(false)}
+            className="absolute top-6 right-6 text-white/80 hover:text-white p-2.5 border border-white/20 rounded-full hover:border-white transition-colors cursor-pointer"
+            aria-label="Close zoom inspection"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[92vh] max-w-[94vw] flex flex-col items-center cursor-default space-y-4"
+          >
+            <img
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              className="max-h-[80vh] max-w-[92vw] object-contain drop-shadow-2xl"
+            />
+            <div className="text-center space-y-1">
+              <span className="text-xs font-mono text-[#315BFF] uppercase tracking-wider block">
+                {activeSlide.category || 'ORIGINAL DESIGN'} · {String(currentSlideIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
+              </span>
+              <h4 className="text-white text-base sm:text-lg font-light">
+                {activeSlide.title}
+              </h4>
+            </div>
+          </div>
+        </div>
+      )}
     </article>
   );
 };

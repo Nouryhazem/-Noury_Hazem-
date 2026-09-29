@@ -35,16 +35,12 @@ const CREATIVE_PROJECTS = [
     title: 'Dipdux Analytica',
   },
   {
-    slug: 'reef-asia-kitchens',
-    title: 'Reef Asia Kitchens',
-  },
-  {
     slug: 'saudi-national-day-96',
     title: 'Saudi National Day 96',
   },
 ];
 
-// The four projects inside Saudi National Day 96
+// The five projects inside Saudi National Day 96
 const SAUDI_PROJECTS = [
   {
     slug: 'the-room-snd96',
@@ -61,6 +57,10 @@ const SAUDI_PROJECTS = [
   {
     slug: 'bearu-snd96',
     title: 'Béaru',
+  },
+  {
+    slug: 'reef-asia-kitchens',
+    title: 'Reef Asia Kitchens',
   },
 ];
 
@@ -83,8 +83,9 @@ function isCreativeProject(slug: string | null): boolean {
 function isSaudiProject(slug: string | null): boolean {
   if (!slug) return false;
 
-  return SAUDI_PROJECTS.some(
-    (project) => project.slug === slug
+  return (
+    slug === 'reef-asia-snd96' ||
+    SAUDI_PROJECTS.some((project) => project.slug === slug)
   );
 }
 
@@ -356,6 +357,7 @@ export default function App() {
           <CreativeCaseStudyView
             key={currentProjectSlug}
             data={creativeData}
+            slug={currentProjectSlug || undefined}
             onBack={handleCreativeBack}
             onNavigateToProject={(slug) =>
               handleNavigate('case', slug)

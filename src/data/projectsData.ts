@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
     status: 'Proposed Campaign Concept',
     tagline: 'Turning everyday care into a 30-day go-to-market strategy.',
     summary: 'A 30-day go-to-market strategy and content architecture for an Arabic-first medication and daily-organization app, establishing human relevance before asking users to download.',
-    heroImage: '/src/assets/images/juraa_healthcare_brand_1790649694769.jpg',
+    heroImage: '/assets/creative/juraa/juraa_hero.png',
     accentColor: '#315BFF',
     overview: {
       statement: 'JURAA is an Arabic-first medication and daily-organization app. I developed a 30-day go-to-market strategy built around the habits and relationships that give medication management meaning: caring for yourself, checking on someone you love, and maintaining consistency through a busy day.',
@@ -179,7 +179,7 @@ export const PROJECTS: Project[] = [
     status: 'Completed Client Work',
     tagline: 'A familiar café, seen from a new perspective.',
     summary: 'Translating the defining seventh-floor elevation of an established Minya café into a cohesive visual identity: "فوق الزحمة" (If it matters, take it to seven).',
-    heroImage: '/src/assets/images/relax_mockup_elevator.png',
+    heroImage: '/assets/images/relax_mockup_elevator.png',
     accentColor: '#B8924E',
     overview: {
       statement: 'Relax Café is an established local café in Minya, set on the seventh floor. The identity is built around that defining detail: a destination above the everyday, where the view, privacy and atmosphere invite guests to pause.',
@@ -259,7 +259,7 @@ export const PROJECTS: Project[] = [
     status: 'Completed Client Work',
     tagline: 'Care, made part of everyday life.',
     summary: 'An Arabic-first medication companion identity uniting the emotional warmth of a heart with the functional precision of a capsule: "The Shape of Care" · جرعتك في وقتها.',
-    heroImage: '/src/assets/images/juraa_mockup.png',
+    heroImage: '/assets/creative/juraa/juraa_hero.png',
     accentColor: '#0F6663',
     overview: {
       statement: 'JURAA is an Arabic-first medication companion designed around a simple human need: making everyday medication routines easier to organize. I developed a visual identity that brings together care, trust and simplicity, translating these values into a flexible logo system, a calm visual language and consistent digital and physical applications.',
@@ -348,7 +348,7 @@ export const PROJECTS: Project[] = [
     status: 'Ongoing Work',
     tagline: 'Building a growth system for the work that happens after launch.',
     summary: 'Connecting market positioning, demand generation, sales enablement, and client-led advocacy into an integrated growth architecture for post-launch digital operations.',
-    heroImage: '/src/assets/images/cloudx_b2b_campaign_1790649718333.jpg',
+    heroImage: '/assets/images/cloudx.png',
     accentColor: '#315BFF',
     overview: {
       statement: 'CloudX provides digital infrastructure and post-launch technical support. I developed a strategic marketing framework to clarify its role in the market and connect that position to audience targeting, campaign planning, lead generation, sales follow-up and growth through existing customer relationships.',
@@ -430,7 +430,7 @@ export const PROJECTS: Project[] = [
     status: 'Completed Client Work',
     tagline: 'Bridging pan-Asian street gastronomy with modern Saudi palate preferences',
     summary: 'Scaling multiple virtual restaurant concepts in the competitive Saudi cloud kitchen sector through culturally attuned social content and culinary storytelling.',
-    heroImage: '/src/assets/images/reef_asia_kitchens_1790649728448.jpg',
+    heroImage: '/assets/creative/reef-asia-kitchens/r1.PNG',
     accentColor: '#315BFF',
     overview: {
       statement: 'Reef Asia operates high-capacity cloud kitchens delivering pan-Asian cuisine across Riyadh and Jeddah. In a market crowded with shawarma and burgers, Asian food required approachable cultural framing.',
@@ -510,7 +510,7 @@ export const PROJECTS: Project[] = [
     status: 'Completed Client Work',
     tagline: 'Honoring Saudi national pride with cultural authenticity and contemporary art direction',
     summary: 'Choreographing multi-brand creative campaigns for Saudi National Day (93 & 94) that resonated emotionally while avoiding cliché promotional gimmicks.',
-    heroImage: '/src/assets/images/saudi_national_day_art_1790649741216.jpg',
+    heroImage: '/assets/images/saudi_national_day_art_1790649741216.jpg',
     accentColor: '#315BFF',
     overview: {
       statement: 'Every September, Saudi brands flood social feeds with generic green filters and shallow discounts. Our clients needed campaigns of genuine dignity and emotional depth.',
@@ -590,7 +590,7 @@ export const PROJECTS: Project[] = [
     status: 'Ongoing Work',
     tagline: 'Unifying client strategy, creative campaigns, and data analytics under one roof',
     summary: 'Nouri’s core professional crucible: managing multi-client marketing accounts, bridging creative designers with data engineers, and turning raw analytics into actionable growth.',
-    heroImage: '/src/assets/images/cloudx_b2b_campaign_1790649718333.jpg',
+    heroImage: '/assets/creative/dipdux/IMG_7638.PNG',
     accentColor: '#315BFF',
     overview: {
       statement: 'At Dipdux Analytica, Nouri leads marketing strategies across diverse industries, orchestrating campaigns, reporting on KPIs, and ensuring client business objectives are met with creative flair.',
@@ -670,7 +670,7 @@ export const PROJECTS: Project[] = [
     status: 'Proposed Campaign Concept',
     tagline: 'Empowering the next generation of Arab creative technologists',
     summary: 'A proposed brand framework and launch campaign for a speculative regional accelerator designed to fast-track young Arab designers, copywriters, and developers into global creative agencies.',
-    heroImage: '/src/assets/images/juraa_healthcare_brand_1790649794769.jpg', // fallback image
+    heroImage: '/assets/images/saudi_national_day_art_1790649741216.jpg', // fallback image
     accentColor: '#315BFF',
     overview: {
       statement: 'This proposed campaign concept addresses the gap between traditional academic design education and modern digital product realities in the GCC.',
@@ -751,7 +751,7 @@ export const PROJECTS: Project[] = [
     status: 'Independent Speculative Project',
     tagline: 'Accelerating EV adoption in Cairo through clear total-cost-of-ownership math',
     summary: 'An independent strategic and interactive web prototype exploring how electric vehicle adoption in Cairo can be accelerated through transparent cost calculators and charging network maps.',
-    heroImage: '/src/assets/images/cloudx_b2b_campaign_1790649718333.jpg', // fallback image
+    heroImage: '/assets/images/cloudx.png', // fallback image
     accentColor: '#315BFF',
     overview: {
       statement: 'An exploratory project testing how interactive web development and data visualization can overcome consumer hesitation about EV ownership in developing infrastructure markets.',

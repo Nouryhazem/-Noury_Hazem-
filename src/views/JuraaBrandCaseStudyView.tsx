@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { JURAA_BRAND_DATA } from '../data/juraaBrandData';
-import { PROJECTS } from '../data/projectsData';
 import { soundEngine } from '../utils/soundEngine';
 import { MonogramN } from '../components/MonogramN';
-import { JuraaLogo, JuraaLogoVariant } from '../components/JuraaLogo';
-import { JuraaMockupImage, JuraaLogoImage } from '../components/JuraaAssetDisplay';
+import {
+  JuraaLogoImage,
+  JuraaMockupImage,
+  JuraaAppScreens,
+  JURAA_ORIGINAL_LOGO,
+} from '../components/JuraaAssetDisplay';
 import {
   ArrowLeft,
   ArrowRight,
-  ArrowUpRight,
   CheckCircle2,
   Layers,
   Heart,
@@ -43,17 +45,8 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
   // Chapter 01: Active Brand Value
   const [activeValueIndex, setActiveValueIndex] = useState<number>(0);
 
-  // Chapter 02: Active Logo Configuration
-  const [activeConfigIndex, setActiveConfigIndex] = useState<number>(0);
-
   // Chapter 03: Selected Color Swatch
   const [activeColorIndex, setActiveColorIndex] = useState<number>(0);
-
-  // Chapter 04: Active Digital Screen
-  const [activeScreenIndex, setActiveScreenIndex] = useState<number>(0);
-
-  // Chapter 05: Active Physical Collateral
-  const [activeCollateralIndex, setActiveCollateralIndex] = useState<number>(0);
 
   // Auto-scroll to top on mount
   useEffect(() => {
@@ -69,10 +62,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
     }
   };
 
-  const activeConfig = data.logoArchitecture.configurations[activeConfigIndex];
   const activeColor = data.visualLanguage.colors[activeColorIndex];
-  const activeScreen = data.digitalApplications.screens[activeScreenIndex];
-  const activeCollateral = data.physicalApplications.collateral[activeCollateralIndex];
 
   return (
     <article className="min-h-screen bg-[#F5F3EF] text-[#173635] selection:bg-[#0F6663] selection:text-white pt-24 pb-28 font-sans">
@@ -120,21 +110,9 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
                 </span>
               </div>
 
-              {/* The Shape of Care Emblem & Brand Title */}
-              <div className="pt-2 flex items-baseline gap-4 flex-wrap">
-                <h1
-                  style={{ fontFamily: '"Cairo", sans-serif' }}
-                  className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#0F6663] tracking-tight leading-none"
-                  dir="rtl"
-                >
-                  جُرعة
-                </h1>
-                <span
-                  style={{ fontFamily: '"Cairo", sans-serif' }}
-                  className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#173635] tracking-[0.25em] uppercase"
-                >
-                  J U R A A
-                </span>
+              {/* The Authoritative Original Brand Logo in Hero */}
+              <div className="pt-2">
+                <JuraaLogoImage size="hero" className="p-0" />
               </div>
 
               <p className="text-2xl sm:text-3xl md:text-4xl font-light text-[#173635] tracking-tight leading-[1.12]">
@@ -167,16 +145,16 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
             </div>
           </div>
 
-          {/* Right: Project Brief Dossier Card with Authentic JURAA Logo */}
+          {/* Right: Project Brief Dossier Card with Authoritative JURAA Logo */}
           <div className="lg:col-span-4 bg-[#FFFFFF] border border-[#0F6663]/20 shadow-sm p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-[#173635]/10 text-[10px] font-mono uppercase tracking-widest text-[#0F6663]">
-              <span>Brand Architecture Dossier</span>
-              <span>JRA-01</span>
+              <span>Authoritative Brand Identity</span>
+              <span>ORIGINAL ASSET</span>
             </div>
 
-            {/* Featured Authentic JURAA Logo on Pure White Ground */}
-            <div className="py-8 flex flex-col items-center justify-center border-y border-[#173635]/10 bg-[#F5F3EF]">
-              <JuraaLogoImage variant="primary" size="lg" />
+            {/* Featured Original Logo on Crisp Ground */}
+            <div className="py-6 flex flex-col items-center justify-center border-y border-[#173635]/10 bg-[#F5F3EF]">
+              <JuraaLogoImage size="lg" theme="transparent" />
             </div>
 
             <dl className="space-y-3.5 text-xs font-mono">
@@ -190,7 +168,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
               </div>
               <div className="flex justify-between border-b border-[#173635]/5 pb-2">
                 <dt className="text-[#173635]/50 uppercase">Typeface</dt>
-                <dd className="font-medium text-[#0F6663]">Cairo (Arabic & English)</dd>
+                <dd className="font-medium text-[#0F6663]">Cairo (Approved Communication Font)</dd>
               </div>
               <div className="flex justify-between border-b border-[#173635]/5 pb-2">
                 <dt className="text-[#173635]/50 uppercase">Role</dt>
@@ -213,7 +191,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
             </button>
             <span>/</span>
             <button onClick={() => scrollToSection('chapter-02')} className="hover:text-[#0F6663] cursor-pointer font-semibold text-[#0F6663]">
-              02 Logo Architecture
+              02 Brand Mark
             </button>
             <span>/</span>
             <button onClick={() => scrollToSection('chapter-03')} className="hover:text-[#0F6663] cursor-pointer">
@@ -221,7 +199,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
             </button>
             <span>/</span>
             <button onClick={() => scrollToSection('chapter-04')} className="hover:text-[#0F6663] cursor-pointer">
-              04 Digital App
+              04 Digital App UI
             </button>
             <span>/</span>
             <button onClick={() => scrollToSection('chapter-05')} className="hover:text-[#0F6663] cursor-pointer">
@@ -337,7 +315,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 02 — LOGO ARCHITECTURE (INTERACTIVE LOGO SYSTEM) */}
+      {/* CHAPTER 02 — AUTHORITATIVE BRAND MARK ARCHITECTURE */}
       {/* ========================================================================= */}
       <section id="chapter-02" className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#173635]/15 bg-[#EAE6DC]/30">
         <div className="space-y-12">
@@ -355,123 +333,77 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
               <p>{data.logoArchitecture.body[0]}</p>
               <p>{data.logoArchitecture.body[1]}</p>
             </div>
-
-            {/* Symbol Geometry Breakdown */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-              <div className="p-5 bg-white border border-[#0F6663]/10 space-y-1">
-                <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold">
-                  01 / The Heart
-                </span>
-                <p className="text-xs text-[#173635]/80 leading-relaxed">
-                  {data.logoArchitecture.symbolConcept.heart}
-                </p>
-              </div>
-              <div className="p-5 bg-white border border-[#0F6663]/10 space-y-1">
-                <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold">
-                  02 / The Capsule
-                </span>
-                <p className="text-xs text-[#173635]/80 leading-relaxed">
-                  {data.logoArchitecture.symbolConcept.capsule}
-                </p>
-              </div>
-              <div className="p-5 bg-[#DCECEA] border border-[#0F6663]/20 space-y-1">
-                <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold">
-                  03 / The Synthesis
-                </span>
-                <p className="text-xs text-[#0F6663] leading-relaxed font-medium">
-                  {data.logoArchitecture.symbolConcept.synthesis}
-                </p>
-              </div>
-            </div>
           </div>
 
-          {/* Interactive Logo Architecture Inspector */}
-          <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-[#173635]/10 text-xs font-mono">
+          {/* Master Logo Presentation: Full uncompressed authoritative artwork with clearspace */}
+          <div className="bg-white border border-[#0F6663]/20 shadow-md p-8 sm:p-12 lg:p-16">
+            <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#173635]/10 text-xs font-mono">
               <span className="text-[#0F6663] uppercase tracking-widest font-semibold">
-                [ 06 APPROVED LOGO CONFIGURATIONS ]
+                [ AUTHORITATIVE MASTER LOGO · ORIGINAL ARTWORK ]
               </span>
-              <span className="text-[#173635]/50">CLICK TO TEST CLEARSPACE & RATIOS</span>
+              <span className="text-[#173635]/50">ORIGINAL PROPORTIONS · SYMBOL · ARABIC & ENGLISH WORDMARK</span>
             </div>
 
-            {/* Configuration Tabs */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-              {data.logoArchitecture.configurations.map((cfg, idx) => {
-                const isActive = activeConfigIndex === idx;
-                return (
-                  <button
-                    key={cfg.id}
-                    onClick={() => {
-                      soundEngine.playMechanicalTick(1);
-                      setActiveConfigIndex(idx);
-                    }}
-                    className={`p-3.5 text-left border transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#0F6663] text-white border-[#0F6663] shadow-sm'
-                        : 'bg-white text-[#173635] border-[#173635]/15 hover:border-[#55B6AE]'
-                    }`}
-                  >
-                    <div className="text-[10px] font-mono opacity-60 mb-1">CFG {cfg.num}</div>
-                    <div className="font-semibold text-xs tracking-tight line-clamp-1">{cfg.title}</div>
-                  </button>
-                );
-              })}
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-8">
+              {/* Logo Frame: generous clear space, un-distorted object-contain */}
+              <div className="lg:col-span-6 bg-[#F5F3EF] border border-[#0F6663]/15 p-10 sm:p-14 flex items-center justify-center min-h-[320px]">
+                <img
+                  src={JURAA_ORIGINAL_LOGO}
+                  alt="Official JURAA Brand Mark"
+                  className="max-h-56 max-w-full object-contain drop-shadow-sm"
+                />
+              </div>
 
-            {/* Active Configuration Stage */}
-            <div className="bg-white border border-[#173635]/15 p-8 sm:p-12 space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#173635]/10">
+              {/* Design Anatomy & Geometry breakdown */}
+              <div className="lg:col-span-6 space-y-6">
                 <div>
                   <span className="text-xs font-mono uppercase tracking-widest text-[#0F6663]">
-                    CONFIGURATION {activeConfig.num} · {activeConfig.subtitle}
+                    The Shape of Care · Interlocking Geometry
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-light text-[#173635] mt-1">
-                    {activeConfig.title}
+                    Empathy Meets Medicinal Precision
                   </h3>
                 </div>
 
-                <div className="px-3 py-1 bg-[#DCECEA] font-mono text-xs text-[#0F6663]">
-                  {activeConfig.usage}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Visual Presentation Frame */}
-                <div
-                  style={{ backgroundColor: activeConfig.bgColor, color: activeConfig.textColor }}
-                  className="lg:col-span-6 p-12 border border-[#173635]/10 flex flex-col items-center justify-center min-h-[300px] transition-all relative overflow-hidden"
-                >
-                  <JuraaLogo
-                    variant={activeConfig.variant}
-                    size="xl"
-                    theme={activeConfig.variant === 'reversed' ? 'white' : 'teal'}
-                  />
-
-                  {/* Clean clearspace overlay indicator */}
-                  <div className="absolute top-3 right-3 text-[9px] font-mono opacity-50 uppercase tracking-widest">
-                    Approved Geometry
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-4 bg-[#F5F3EF] border border-[#0F6663]/15 space-y-1">
+                    <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold block">
+                      01 / The Heart
+                    </span>
+                    <p className="text-xs text-[#173635]/80 leading-relaxed font-light">
+                      {data.logoArchitecture.symbolConcept.heart}
+                    </p>
+                  </div>
+                  <div className="p-4 bg-[#F5F3EF] border border-[#0F6663]/15 space-y-1">
+                    <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold block">
+                      02 / The Capsule
+                    </span>
+                    <p className="text-xs text-[#173635]/80 leading-relaxed font-light">
+                      {data.logoArchitecture.symbolConcept.capsule}
+                    </p>
+                  </div>
+                  <div className="p-4 bg-[#DCECEA] border border-[#0F6663]/25 space-y-1">
+                    <span className="text-xs font-mono uppercase text-[#0F6663] font-semibold block">
+                      03 / The Synthesis
+                    </span>
+                    <p className="text-xs text-[#0F6663] leading-relaxed font-medium">
+                      {data.logoArchitecture.symbolConcept.synthesis}
+                    </p>
                   </div>
                 </div>
 
-                {/* Technical Specifications */}
-                <div className="lg:col-span-6 space-y-4">
-                  <p className="text-base sm:text-lg font-light text-[#173635] leading-relaxed">
-                    {activeConfig.description}
-                  </p>
-
-                  <div className="pt-4 border-t border-[#173635]/10 space-y-3 font-mono text-xs">
-                    <div className="flex justify-between border-b border-[#173635]/5 pb-2">
-                      <span className="text-[#173635]/50">Primary Substrate:</span>
-                      <span className="font-semibold text-[#0F6663]">{activeConfig.bgColor}</span>
-                    </div>
-                    <div className="flex justify-between border-b border-[#173635]/5 pb-2">
-                      <span className="text-[#173635]/50">Primary Font:</span>
-                      <span className="text-[#173635]">Cairo (700 Bold / 800 ExtraBold)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#173635]/50">Tagline Inscription:</span>
-                      <span className="text-[#0F6663]">جرعتك في وقتها</span>
-                    </div>
+                <div className="pt-4 border-t border-[#173635]/10 space-y-3 font-mono text-xs">
+                  <div className="flex justify-between border-b border-[#173635]/5 pb-2">
+                    <span className="text-[#173635]/50">Authentic Asset Source:</span>
+                    <span className="font-semibold text-[#0F6663]">Original JURAA Vector Archive</span>
+                  </div>
+                  <div className="flex justify-between border-b border-[#173635]/5 pb-2">
+                    <span className="text-[#173635]/50">Communication Font:</span>
+                    <span className="text-[#173635]">Cairo (700 Bold / 600 SemiBold)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#173635]/50">Clear Space Rule:</span>
+                    <span className="text-[#0F6663]">Minimum 0.5X symbol width surrounding mark</span>
                   </div>
                 </div>
               </div>
@@ -643,7 +575,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 04 — DIGITAL APPLICATIONS (APP UI EXPERIENCE) */}
+      {/* CHAPTER 04 — DIGITAL APPLICATIONS (AUTHENTIC APP SCREENSHOTS) */}
       {/* ========================================================================= */}
       <section id="chapter-04" className="max-w-7xl mx-auto px-6 sm:px-8 py-20 border-b border-[#173635]/15 bg-[#EAE6DC]/40">
         <div className="space-y-12">
@@ -663,131 +595,21 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
             </div>
           </div>
 
-          {/* Product Hero Presentation */}
-          <div className="border border-[#173635]/15 overflow-hidden bg-white shadow-sm">
-            <JuraaMockupImage aspectRatio="16/9" />
+          {/* Product Hero Ecosystem */}
+          <div className="border border-[#0F6663]/20 overflow-hidden bg-white shadow-md">
+            <JuraaMockupImage aspectRatio="16/9" allowZoom={true} />
           </div>
 
-          {/* 5 Core Screens Inspector */}
-          <div className="space-y-6 pt-6">
+          {/* Authentic App Screen Gallery */}
+          <div className="space-y-6 pt-4">
             <div className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-[#173635]/10 text-xs font-mono">
               <span className="text-[#0F6663] uppercase tracking-widest font-semibold">
-                [ 05 DOCUMENTED INTERFACE USER JOURNEYS ]
+                [ AUTHENTIC APPLICATION SCREENSHOTS · ARABIC UI FLOW ]
               </span>
-              <span className="text-[#173635]/50">INSPECT DIGITAL EXTENSION</span>
+              <span className="text-[#173635]/50">CLICK ANY SCREEN TO EXPAND</span>
             </div>
 
-            {/* Screen Tabs */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-              {data.digitalApplications.screens.map((sc, idx) => {
-                const isActive = activeScreenIndex === idx;
-                return (
-                  <button
-                    key={sc.num}
-                    onClick={() => {
-                      soundEngine.playMechanicalTick(1);
-                      setActiveScreenIndex(idx);
-                    }}
-                    className={`p-4 text-left border transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-[#0F6663] text-white border-[#0F6663] shadow-sm'
-                        : 'bg-white text-[#173635] border-[#173635]/15 hover:border-[#55B6AE]'
-                    }`}
-                  >
-                    <div className="text-[10px] font-mono opacity-60 mb-1">SCREEN {sc.num}</div>
-                    <div className="font-semibold text-xs tracking-tight line-clamp-1">{sc.title}</div>
-                    <div className="text-[11px] font-mono opacity-80 mt-1" dir="rtl">
-                      {sc.titleArabic}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Active Screen Presentation */}
-            <div className="bg-white border border-[#173635]/15 p-8 sm:p-12 space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#173635]/10">
-                <div>
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#0F6663]">
-                    SCREEN {activeScreen.num} · {activeScreen.titleArabic}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-light text-[#173635] mt-1">
-                    {activeScreen.title}
-                  </h3>
-                </div>
-
-                <div className="px-3 py-1.5 bg-[#DCECEA] font-mono text-xs text-[#0F6663]">
-                  Arabic-First UI
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* CSS Simulated Phone Frame */}
-                <div className="lg:col-span-5 bg-[#F5F3EF] p-6 border border-[#173635]/10 flex flex-col items-center justify-center">
-                  <div className="w-full max-w-[280px] bg-white border-4 border-[#173635] rounded-3xl p-4 shadow-xl space-y-4">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-[#173635]/60 pb-2 border-b border-[#173635]/10">
-                      <span>9:41</span>
-                      <div className="w-12 h-3.5 bg-[#173635] rounded-full mx-auto" />
-                      <span>5G 100%</span>
-                    </div>
-
-                    <div className="space-y-3" dir="rtl">
-                      <div className="flex items-center justify-between">
-                        <JuraaLogo variant="symbol" size="xs" />
-                        <span
-                          style={{ fontFamily: '"Cairo", sans-serif' }}
-                          className="text-xs font-bold text-[#0F6663]"
-                        >
-                          {activeScreen.titleArabic}
-                        </span>
-                      </div>
-
-                      {/* Mock UI Card */}
-                      <div className="p-3 bg-[#DCECEA]/50 border border-[#0F6663]/20 rounded-xl space-y-2">
-                        <div className="text-[11px] font-bold text-[#0F6663]">
-                          بنادول إكسترا (Panadol Extra)
-                        </div>
-                        <div className="text-[10px] text-[#173635]/70">
-                          قرصان بعد وجبة الإفطار · 8:30 صباحاً
-                        </div>
-                        <div className="flex items-center gap-1 text-[9px] text-[#55B6AE] font-semibold">
-                          <Check className="w-3 h-3" />
-                          <span>تم تسجيل الجرعة بنجاح</span>
-                        </div>
-                      </div>
-
-                      <div className="p-2.5 bg-[#F5F3EF] rounded-lg text-[10px] text-[#173635]/70 space-y-1">
-                        <div className="font-semibold text-[#173635]">المخزون المتبقي: 12 قرص</div>
-                        <div className="w-full h-1.5 bg-[#173635]/10 rounded-full overflow-hidden">
-                          <div className="w-2/3 h-full bg-[#55B6AE]" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Details */}
-                <div className="lg:col-span-7 space-y-4">
-                  <p className="text-base sm:text-lg font-light text-[#173635] leading-relaxed">
-                    {activeScreen.description}
-                  </p>
-
-                  <div className="pt-4 border-t border-[#173635]/10 space-y-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#0F6663] block">
-                      Feature Highlights:
-                    </span>
-                    <ul className="space-y-1.5 text-xs sm:text-sm font-light text-[#173635]/80">
-                      {activeScreen.featureHighlights.map((fh, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#55B6AE]" />
-                          <span>{fh}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <JuraaAppScreens />
           </div>
         </div>
       </section>
@@ -814,8 +636,8 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
           </div>
 
           {/* Full-Bleed Tactile Brand Mockup Presentation */}
-          <div className="border border-[#173635]/15 overflow-hidden bg-white shadow-md">
-            <JuraaMockupImage aspectRatio="16/9" />
+          <div className="border border-[#0F6663]/20 overflow-hidden bg-white shadow-md">
+            <JuraaMockupImage aspectRatio="16/9" allowZoom={true} />
           </div>
 
           {/* Physical Application Specifications */}
@@ -828,7 +650,7 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs font-mono text-[#0F6663]">
                     <span>APPLICATION 0{idx + 1}</span>
-                    <JuraaLogo variant="symbol" size="xs" />
+                    <span className="text-[10px] text-[#55B6AE] font-semibold uppercase">Tactile</span>
                   </div>
                   <h4 className="text-base font-semibold text-[#173635] tracking-tight">
                     {item.title}
@@ -925,24 +747,31 @@ export const JuraaBrandCaseStudyView: React.FC<JuraaBrandCaseStudyViewProps> = (
             </div>
           </div>
 
-          {/* Closing Brand Lockup Banner */}
-          <div className="p-8 sm:p-12 bg-[#0F6663] text-white flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-2 text-center md:text-left">
-              <JuraaLogo variant="horizontal" size="md" theme="white" />
-              <div className="text-xs font-mono text-[#DCECEA] pt-2">
-                Digital Health Brand Architecture · Cairo Typography & Reassuring Palette
+          {/* Closing Brand Lockup Banner with Authentic Logo */}
+          <div className="p-8 sm:p-12 bg-[#0F6663] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-lg">
+            <div className="flex items-center gap-6">
+              <div className="p-3 bg-white/10 rounded-xl">
+                <JuraaLogoImage size="md" theme="transparent" />
+              </div>
+              <div className="space-y-1 text-left">
+                <div className="text-sm font-bold tracking-wider uppercase text-white">
+                  JURAA · THE SHAPE OF CARE
+                </div>
+                <div className="text-xs font-mono text-[#DCECEA]">
+                  Digital Health Brand Architecture · Cairo Typography & Reassuring Palette
+                </div>
               </div>
             </div>
 
-            <div className="text-center md:text-right space-y-2">
+            <div className="text-center md:text-right space-y-1">
               <div
                 style={{ fontFamily: '"Cairo", sans-serif' }}
-                className="text-4xl sm:text-5xl font-bold text-white"
+                className="text-3xl sm:text-4xl font-bold text-white"
                 dir="rtl"
               >
                 {data.contribution.closingArabic}
               </div>
-              <div className="text-base font-serif italic text-[#DCECEA]">
+              <div className="text-sm font-serif italic text-[#DCECEA]">
                 &ldquo;{data.contribution.closingEnglish}&rdquo;
               </div>
             </div>

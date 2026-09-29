@@ -15,6 +15,7 @@ import {
   Coffee,
   Film,
   Smile,
+  Utensils,
 } from 'lucide-react';
 
 interface SaudiNationalDayCollectionProps {
@@ -39,6 +40,7 @@ export const SaudiNationalDayCollection: React.FC<SaudiNationalDayCollectionProp
     if (id === 'snd-the-room') return Coffee;
     if (id === 'snd-ae-creative') return Film;
     if (id === 'snd-ratio') return Palette;
+    if (id === 'snd-reef-asia') return Utensils;
     return Smile;
   };
 
@@ -105,7 +107,7 @@ export const SaudiNationalDayCollection: React.FC<SaudiNationalDayCollectionProp
             </div>
             <div>
               <span className="text-[#171717]/40 uppercase mr-1">TOTAL BRANDS:</span>
-              <span className="text-[#165B33] font-semibold">4 Distinct Case Studies</span>
+              <span className="text-[#165B33] font-semibold">5 Brand Showcases</span>
             </div>
             <div>
               <span className="text-[#171717]/40 uppercase mr-1">CREATIVE APPROACH:</span>
@@ -115,35 +117,17 @@ export const SaudiNationalDayCollection: React.FC<SaudiNationalDayCollectionProp
         </div>
       </header>
 
-      {/* Flagship Collection Master Artwork */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-8 pt-10">
-        <div className="relative border border-[#171717]/15 bg-[#171717] overflow-hidden">
-          <CreativeImage
-            src="/src/assets/creative/saudi-national-day-96/saudi_national_day_hero.jpg"
-            candidates={[
-              '/src/assets/creative/saudi-national-day-96/saudi_national_day_hero.jpg',
-              '/src/assets/images/saudi_national_day_art_1790649741216.jpg',
-              data.featuredBrands[0].heroImage,
-            ]}
-            alt="Saudi National Day 96 Master Artwork"
-            aspectRatio="16/9"
-            badge="COLLECTION MASTER KEY VISUAL"
-            allowZoom={true}
-          />
-        </div>
-      </section>
-
-      {/* The 4 Independent Brand Showcase Cards */}
+      {/* The 5 Independent Brand Showcase Cards */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 py-16 space-y-16">
         <div className="flex items-baseline justify-between border-b border-[#171717]/10 pb-4">
           <div>
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#165B33] block">
               Curated Brand Index
             </span>
-            <h2 className="text-2xl font-light text-[#171717] mt-1">Four Autonomous Creative Responses</h2>
+            <h2 className="text-2xl font-light text-[#171717] mt-1">Five Autonomous Creative Responses</h2>
           </div>
           <span className="text-xs font-mono text-[#171717]/50 hidden sm:inline">
-            Each links to a dedicated 6-Chapter Case Study
+            Each links to a dedicated Image-First Creative Showcase
           </span>
         </div>
 
@@ -223,7 +207,7 @@ export const SaudiNationalDayCollection: React.FC<SaudiNationalDayCollectionProp
 
                     <div className="pt-4 flex items-center justify-between border-t border-[#171717]/10">
                       <span className="text-xs font-mono text-[#171717]/50">
-                        Comprehensive 6-Chapter Case Study
+                        Supplied Original Designs Gallery
                       </span>
 
                       <button
@@ -234,7 +218,7 @@ export const SaudiNationalDayCollection: React.FC<SaudiNationalDayCollectionProp
                         }}
                         className="px-6 py-3 bg-[#171717] text-[#F4F1E9] hover:bg-[#315BFF] transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer inline-flex items-center gap-2 group-hover:bg-[#165B33]"
                       >
-                        <span>Explore Case Study</span>
+                        <span>Explore Image Slideshow</span>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>

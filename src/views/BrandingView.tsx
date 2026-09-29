@@ -3,7 +3,6 @@ import { Project, PROJECTS } from '../data/projectsData';
 import { MonogramN } from '../components/MonogramN';
 import { DisciplineTabs } from '../components/DisciplineTabs';
 import { RelaxLogo } from '../components/RelaxLogo';
-import { JuraaLogo } from '../components/JuraaLogo';
 import { JuraaMockupImage, JuraaLogoImage } from '../components/JuraaAssetDisplay';
 import { ArrowUpRight, ArrowRight, Grid, Type, Compass, Box, Coffee, Heart } from 'lucide-react';
 
@@ -218,34 +217,19 @@ export const BrandingView: React.FC<BrandingViewProps> = ({
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left: Project Details & Authentic Cairo Identity Typography */}
+            {/* Left: Project Details & Authentic JURAA Brand Mark */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="space-y-3">
-                <div className="flex items-baseline gap-4 flex-wrap">
-                  <h2
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#0F6663] leading-none tracking-tight"
-                    dir="rtl"
-                  >
-                    جُرعة
-                  </h2>
-                  <span
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-2xl sm:text-3xl md:text-4xl text-[#173635] font-bold tracking-[0.25em] uppercase"
-                  >
-                    J U R A A
-                  </span>
-                  <span
-                    style={{ fontFamily: '"Cairo", sans-serif' }}
-                    className="text-sm sm:text-base font-semibold text-[#55B6AE] px-3 py-1 bg-[#DCECEA] border border-[#0F6663]/20"
-                    dir="rtl"
-                  >
-                    جرعتك في وقتها
-                  </span>
-                </div>
-
-                <div className="text-xs font-mono uppercase tracking-widest text-[#0F6663]">
-                  Brand Strategy & Visual Identity · Digital Health · Egypt
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 flex-wrap">
+                  <JuraaLogoImage size="md" className="p-0" />
+                  <div>
+                    <span className="text-xs font-mono uppercase tracking-widest text-[#0F6663] block">
+                      Brand Strategy & Visual Identity · Digital Health · Egypt
+                    </span>
+                    <span className="text-xs font-mono text-[#55B6AE]" dir="rtl">
+                      جرعتك في وقتها · The Shape of Care
+                    </span>
+                  </div>
                 </div>
 
                 <p className="text-xl sm:text-2xl md:text-3xl font-light text-[#173635] tracking-tight leading-snug">
@@ -317,7 +301,7 @@ export const BrandingView: React.FC<BrandingViewProps> = ({
 
               {/* Logo Lockup Card */}
               <div className="p-6 bg-[#F5F3EF] border border-[#0F6663]/20 flex flex-col items-center justify-center text-center space-y-4 transition-transform duration-500 group-hover:-translate-y-1">
-                <JuraaLogoImage size="lg" variant="primary" />
+                <JuraaLogoImage size="lg" theme="transparent" />
 
                 <div className="pt-3 border-t border-[#173635]/10 w-full flex items-center justify-between text-[11px] font-mono text-[#173635]/60">
                   <span>Egypt · Digital Health</span>

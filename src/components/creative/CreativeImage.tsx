@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Maximize2, X, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { Maximize2, X, Image as ImageIcon } from 'lucide-react';
 import { soundEngine } from '../../utils/soundEngine';
 
 interface CreativeImageProps {
@@ -8,6 +8,7 @@ interface CreativeImageProps {
   alt: string;
   className?: string;
   aspectRatio?: '1/1' | '4/5' | '16/9' | '9/16' | '4/3' | 'auto';
+  objectFit?: 'cover' | 'contain';
   caption?: string;
   captionArabic?: string;
   showCaption?: boolean;
@@ -16,28 +17,43 @@ interface CreativeImageProps {
   badge?: string;
 }
 
+// Ensure runtime URLs always point to public /assets rather than /src/assets
+const cleanAssetPath = (path: string): string => {
+  if (!path) return '';
+  if (path.startsWith('/src/assets/')) {
+    return path.replace('/src/assets/', '/assets/');
+  }
+  return path;
+};
+
 export const CreativeImage: React.FC<CreativeImageProps> = ({
   src,
   candidates = [],
   alt,
   className = '',
   aspectRatio = 'auto',
+  objectFit = 'contain',
   caption,
   captionArabic,
   showCaption = false,
   allowZoom = true,
   badge,
 }) => {
-  const allCandidates = [src, ...candidates.filter((c) => c !== src)];
+  const normalizedSrc = cleanAssetPath(src);
+  const normalizedCandidates = [
+    normalizedSrc,
+    ...candidates.map(cleanAssetPath).filter((c) => c !== normalizedSrc && Boolean(c)),
+  ];
+
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const currentSrc = allCandidates[candidateIndex] || src;
+  const currentSrc = normalizedCandidates[candidateIndex] || normalizedSrc;
 
   const handleImageError = () => {
-    if (candidateIndex < allCandidates.length - 1) {
+    if (candidateIndex < normalizedCandidates.length - 1) {
       setCandidateIndex((prev) => prev + 1);
     } else {
       setHasError(true);
@@ -71,12 +87,14 @@ export const CreativeImage: React.FC<CreativeImageProps> = ({
       ? 'aspect-4/3'
       : '';
 
+  const fitClass = objectFit === 'cover' ? 'object-cover' : 'object-contain';
+
   return (
     <>
       <figure className="group relative flex flex-col space-y-2">
         <div
           onClick={handleOpenZoom}
-          className={`relative w-full ${aspectClass} overflow-hidden bg-[#EAE6DC] border border-[#171717]/10 ${
+          className={`relative w-full ${aspectClass} overflow-hidden bg-[#EAE6DC] border border-[#171717]/10 flex items-center justify-center ${
             allowZoom && !hasError ? 'cursor-zoom-in' : ''
           } ${className}`}
         >
@@ -85,10 +103,9 @@ export const CreativeImage: React.FC<CreativeImageProps> = ({
               <img
                 src={currentSrc}
                 alt={alt}
-                referrerPolicy="no-referrer"
                 onError={handleImageError}
                 onLoad={() => setIsLoaded(true)}
-                className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
+                className={`w-full h-full ${fitClass} transition-transform duration-700 ease-out group-hover:scale-[1.02] ${
                   isLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
               />
@@ -145,34 +162,33 @@ export const CreativeImage: React.FC<CreativeImageProps> = ({
         )}
       </figure>
 
-      {/* Fullscreen Lightbox Modal */}
-      {isModalOpen && (
+      {/* Lightbox Fullscreen Modal */}
+      {isModalOpen && !hasError && (
         <div
           onClick={handleCloseZoom}
-          className="fixed inset-0 z-50 bg-[#171717]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-[#171717]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out animate-in fade-in duration-200"
         >
           <button
             onClick={handleCloseZoom}
-            className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors cursor-pointer"
-            aria-label="Close Fullscreen"
+            className="absolute top-6 right-6 p-2 text-white/80 hover:text-white border border-white/20 rounded-full transition-colors z-50"
+            aria-label="Close modal"
           >
             <X className="w-6 h-6" />
           </button>
 
           <div
             onClick={(e) => e.stopPropagation()}
-            className="max-w-6xl max-h-[90vh] flex flex-col items-center justify-center space-y-4"
+            className="relative max-h-[90vh] max-w-[90vw] flex flex-col items-center cursor-default"
           >
             <img
               src={currentSrc}
               alt={alt}
-              referrerPolicy="no-referrer"
-              className="max-h-[80vh] w-auto max-w-full object-contain shadow-2xl border border-white/10"
+              className="max-h-[85vh] max-w-[88vw] object-contain shadow-2xl"
             />
-            {caption && (
-              <p className="text-sm font-light text-white/90 text-center max-w-2xl px-4">
-                {caption} {captionArabic && <span className="opacity-70 mr-2">({captionArabic})</span>}
-              </p>
+            {(caption || alt) && (
+              <div className="mt-3 text-center text-xs font-mono text-[#F4F1E9]/80 max-w-xl">
+                {caption || alt}
+              </div>
             )}
           </div>
         </div>

@@ -113,7 +113,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
       'Relax Café is an established local café in Minya, set on the seventh floor. The identity is built around that defining detail: a destination above the everyday, where the view, privacy and atmosphere invite guests to pause.',
     brandIdeaArabic: 'فوق الزحمة',
     brandIdeaEnglish: 'If it matters, take it to seven.',
-    heroImage: '/src/assets/images/relax_mockup_elevator.png',
+    heroImage: '/assets/images/relax_mockup_elevator.png',
     status: 'Completed Brand Architecture System',
   },
   positioning: {
@@ -284,7 +284,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
         detail:
           'Deep chestnut leather cover hot-stamped with the Pinyon Script wordmark and brass monogram crest, paired with ivory interior leaves and Cormorant typography.',
         material: 'Treated Chestnut Leather · Gold Foil Deboss',
-        image: '/src/assets/images/relax_mockup_table_setting.png',
+        image: '/assets/images/relax_mockup_table_setting.png',
       },
       {
         num: '02',
@@ -293,7 +293,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
         detail:
           'Octagonal coasters echoing the beveled monogram shape with fine perimeter stitching, inscribed: "Relax Café · Level Seven · Minya, Egypt".',
         material: 'Stitched Leather Coaster · Heavyweight Cotton Cardstock',
-        image: '/src/assets/images/relax_mockup_table_setting.png',
+        image: '/assets/images/relax_mockup_table_setting.png',
       },
       {
         num: '03',
@@ -302,7 +302,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
         detail:
           'Warm ivory ceramic cups with subtle aged brass monogram print, alongside double-walled takeaway paper cups fitted with textured espresso-sleeve bands.',
         material: 'Glazed Ceramic · Unbleached Fiber Cup · Espresso Sleeve',
-        image: '/src/assets/images/relax_mockup_takeaway_cup.png',
+        image: '/assets/images/relax_mockup_takeaway_cup.png',
       },
       {
         num: '04',
@@ -311,7 +311,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
         detail:
           'Brushed aged brass plate mounted directly outside the seventh-floor elevator doors, featuring the engraved monogram, directional arrow, and "RELAX CAFÉ".',
         material: 'Solid Brushed Brass · Chemically Etched Infill',
-        image: '/src/assets/images/relax_mockup_elevator.png',
+        image: '/assets/images/relax_mockup_elevator.png',
       },
       {
         num: '05',
@@ -320,7 +320,7 @@ export const RELAX_CASE_STUDY: RelaxCaseStudyData = {
         detail:
           'Espresso shadow cotton aprons with antique brass buckle adjusters and metallic gold thread monogram embroidery on the chest.',
         material: 'Heavyweight Espresso Twill · Brass Hardware',
-        image: '/src/assets/images/relax_mockup_table_setting.png',
+        image: '/assets/images/relax_mockup_table_setting.png',
       },
     ],
   },

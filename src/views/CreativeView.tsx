@@ -119,14 +119,14 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
             </div>
             <div>
               <span className="text-[#171717]/40 uppercase mr-1">ARCHIVE ENTRIES:</span>
-              <span className="text-[#171717] font-medium">4 Featured Works (7 Documented Projects)</span>
+              <span className="text-[#171717] font-medium">3 Curated Entries (7 Documented Projects)</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 4 FEATURED ENTRIES — THE INTERACTIVE EDITORIAL ARCHIVE                     */}
+      {/* 3 FEATURED ENTRIES — THE INTERACTIVE EDITORIAL ARCHIVE                     */}
       {/* ========================================================================= */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-24 mb-28">
         <div className="flex items-baseline justify-between border-b border-[#171717]/10 pb-4">
@@ -134,7 +134,7 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
             [ FEATURED CREATIVE ARCHIVE ENTRIES ]
           </span>
           <span className="text-xs font-mono text-[#171717]/50 hidden sm:inline">
-            Curated Editorial Compositions
+            Image-First Editorial Showcases
           </span>
         </div>
 
@@ -223,7 +223,7 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                   }}
                   className="px-6 py-3.5 bg-[#171717] text-[#F4F1E9] group-hover:bg-[#0F6663] transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>Explore 6-Chapter Case Study</span>
+                  <span>Explore Image Slideshow</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -307,7 +307,7 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                   }}
                   className="px-6 py-3.5 bg-white text-[#171717] group-hover:bg-[#315BFF] group-hover:text-white transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer inline-flex items-center gap-2"
                 >
-                  <span>Explore 6-Chapter Case Study</span>
+                  <span>Explore Image Slideshow</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </button>
               </div>
@@ -316,91 +316,7 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
         </div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* ENTRY 03: REEF ASIA KITCHENS */}
-        {/* ----------------------------------------------------------------------- */}
-        <div
-          onClick={() => {
-            soundEngine.playEditorialClick();
-            onSelectProject('reef-asia-kitchens');
-          }}
-          onMouseEnter={() => setHoveredProjectId('reef')}
-          onMouseLeave={() => setHoveredProjectId(null)}
-          className="group cursor-pointer bg-white border border-[#171717]/15 p-6 sm:p-12 lg:p-16 transition-all hover:border-[#D97706] hover:shadow-2xl relative overflow-hidden"
-        >
-          {/* Card Top Metadata Line */}
-          <div className="flex items-center justify-between pb-6 border-b border-[#171717]/10 mb-8 text-xs font-mono">
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-[#D97706]">03</span>
-              <span className="text-[#171717]/30">/</span>
-              <span className="uppercase tracking-widest text-[#171717]/70 font-medium">
-                Hospitality Campaign Concepts
-              </span>
-            </div>
-            <span className="text-xs font-mono text-[#171717]/50">Commercial Kitchens · Saudi Arabia</span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Visual Hook */}
-            <div className="lg:col-span-7">
-              <CreativeImage
-                src={CREATIVE_PROJECTS[2].heroImage}
-                candidates={CREATIVE_PROJECTS[2].heroImageCandidates}
-                alt="Reef Asia Kitchens Hospitality"
-                aspectRatio="16/9"
-                allowZoom={false}
-                className="shadow-sm"
-                badge="03 / REEF ASIA KITCHENS"
-              />
-            </div>
-
-            {/* Narrative & Action */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="space-y-3">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#171717] tracking-tight">
-                  REEF ASIA KITCHENS
-                </h2>
-
-                <div className="text-xs font-mono uppercase tracking-widest text-[#D97706]">
-                  Culinary Infrastructure · Commercial Scale
-                </div>
-
-                <p className="text-base sm:text-lg text-[#171717]/80 font-light leading-relaxed">
-                  A distinctive campaign framework developed for commercial hospitality and cloud-kitchen ecosystems in the Saudi market, grounded in culinary operational scale.
-                </p>
-              </div>
-
-              {/* Scope & Role */}
-              <div className="py-4 border-y border-[#171717]/10 text-xs font-mono space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-[#171717]/40 uppercase">Role</span>
-                  <span className="text-[#171717] font-medium">Creative Director</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-[#171717]/40 uppercase">Market</span>
-                  <span className="text-[#D97706]">Saudi Arabia (KSA)</span>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="pt-2">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    soundEngine.playEditorialClick();
-                    onSelectProject('reef-asia-kitchens');
-                  }}
-                  className="px-6 py-3.5 bg-[#171717] text-[#F4F1E9] group-hover:bg-[#D97706] transition-colors text-xs font-mono uppercase tracking-wider cursor-pointer inline-flex items-center gap-2"
-                >
-                  <span>Explore 6-Chapter Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ----------------------------------------------------------------------- */}
-        {/* ENTRY 04: SAUDI NATIONAL DAY 96 (MULTI-BRAND COLLECTION)                */}
+        {/* ENTRY 03: SAUDI NATIONAL DAY 96 (MULTI-BRAND COLLECTION)                */}
         {/* ----------------------------------------------------------------------- */}
         <div
           onClick={() => {
@@ -414,32 +330,32 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
           {/* Card Top Metadata Line */}
           <div className="flex items-center justify-between pb-6 border-b border-[#171717]/10 mb-8 text-xs font-mono">
             <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-[#165B33]">04</span>
+              <span className="text-sm font-semibold text-[#165B33]">03</span>
               <span className="text-[#171717]/30">/</span>
               <span className="uppercase tracking-widest text-[#165B33] font-bold">
                 FLAGSHIP MULTI-BRAND CREATIVE COLLECTION
               </span>
             </div>
             <span className="px-2.5 py-0.5 bg-[#165B33] text-white text-[11px] font-mono">
-              2026 Collection
+              2026 Collection · 5 Brands
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Visual Showcase (Preview of the 4 Brands) */}
+            {/* Visual Showcase (Preview of the 5 Brands) */}
             <div className="lg:col-span-7 space-y-4">
               <CreativeImage
-                src={CREATIVE_PROJECTS[3].heroImage}
-                candidates={CREATIVE_PROJECTS[3].heroImageCandidates}
+                src={CREATIVE_PROJECTS[2].heroImage}
+                candidates={CREATIVE_PROJECTS[2].heroImageCandidates}
                 alt="Saudi National Day 96 Collection"
                 aspectRatio="16/9"
                 allowZoom={false}
                 className="shadow-md"
-                badge="04 / SAUDI NATIONAL DAY 96"
+                badge="03 / SAUDI NATIONAL DAY 96"
               />
 
-              {/* 4 Mini Brand Image Thumbnails Grid */}
-              <div className="grid grid-cols-4 gap-2 pt-2">
+              {/* 5 Mini Brand Image Thumbnails Grid */}
+              <div className="grid grid-cols-5 gap-2 pt-2">
                 {SAUDI_NATIONAL_DAY_DATA.featuredBrands.map((b) => (
                   <div
                     key={b.id}
@@ -457,8 +373,8 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                         className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform"
                       />
                     </div>
-                    <span className="text-[10px] font-mono text-[#165B33] font-semibold block">{b.number}</span>
-                    <span className="text-[11px] font-semibold text-[#171717] block truncate">
+                    <span className="text-[9px] font-mono text-[#165B33] font-semibold block">{b.number}</span>
+                    <span className="text-[10px] font-semibold text-[#171717] block truncate">
                       {b.title.split(' ')[0]}
                     </span>
                   </div>
@@ -483,14 +399,14 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                 </div>
 
                 <p className="text-lg sm:text-xl font-editorial italic text-[#171717]/90 leading-snug">
-                  Four Brands. Four Creative Directions.
+                  Five Brands. Five Creative Directions.
                 </p>
 
                 <p className="text-sm sm:text-base text-[#171717]/80 font-light leading-relaxed">
-                  A multi-brand campaign collection developed for Saudi National Day 96 in 2026. Exploring how one historic occasion inspires distinct art directions across four individual client brands:
+                  A multi-brand campaign collection developed for Saudi National Day 96 in 2026. Exploring how one historic occasion inspires distinct art directions across five individual client brands:
                 </p>
 
-                {/* The 4 Sub-brands listed */}
+                {/* The 5 Sub-brands listed */}
                 <ul className="space-y-1.5 text-xs font-mono text-[#171717]/90 pt-1">
                   <li className="flex items-center gap-2">
                     <span className="text-[#165B33] font-bold">04A · THE ROOM:</span>
@@ -507,6 +423,10 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                   <li className="flex items-center gap-2">
                     <span className="text-[#165B33] font-bold">04D · BÉARU:</span>
                     <span>Child-Centered Diriyah Celebration</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-[#165B33] font-bold">04E · REEF ASIA:</span>
+                    <span>The Asian Gathering Feast</span>
                   </li>
                 </ul>
               </div>
