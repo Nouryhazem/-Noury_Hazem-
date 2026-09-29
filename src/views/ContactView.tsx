@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MonogramN } from '../components/MonogramN';
-import { Mail, Linkedin, Globe, FileText, Copy, Check, ArrowUpRight, Send, MapPin, Clock } from 'lucide-react';
+import { Mail, Linkedin, Globe, FileText, Copy, Check, ArrowUpRight, Send, MapPin, Clock, MessageCircle } from 'lucide-react';
 
 export const ContactView: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -13,7 +13,7 @@ export const ContactView: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const emailAddress = 'nouryhazem731@gmail.com';
+  const emailAddress = 'nouryhazem17@gmail.com';
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -120,7 +120,20 @@ export const ContactView: React.FC = () => {
               
               <div className="space-y-3 text-xs">
                 <a
-                  href="https://www.linkedin.com"
+                  href="https://wa.me/201028265294"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-between p-3 bg-white border border-[#171717]/10 hover:border-[#315BFF] transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <MessageCircle className="w-4 h-4 text-[#315BFF]" />
+                    <span className="font-medium text-[#171717]">WhatsApp (01028265294)</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-[#171717]/40 group-hover:text-[#315BFF] group-hover:translate-x-0.5 transition-all" />
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/nouryhazem?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-between p-3 bg-white border border-[#171717]/10 hover:border-[#315BFF] transition-all group"
@@ -133,7 +146,7 @@ export const ContactView: React.FC = () => {
                 </a>
 
                 <a
-                  href="https://www.behance.net"
+                  href="https://www.behance.net/nouryhazem"
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-between p-3 bg-white border border-[#171717]/10 hover:border-[#315BFF] transition-all group"

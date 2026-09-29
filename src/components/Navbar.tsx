@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     {
       id: 'data',
       title: 'Data & Analytics',
-      subtitle: 'Attribution Modeling, Looker & BI',
+      subtitle: 'Dashboards, Power BI & Performance Reporting',
       num: '04',
       icon: BarChart3,
     },

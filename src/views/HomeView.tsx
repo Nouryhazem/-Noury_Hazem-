@@ -305,23 +305,23 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
   const strategyNodes = {
     business: {
       title: 'BUSINESS CHALLENGE',
-      summary: 'Before creating, we diagnose. What is the fundamental commercial barrier? Is it customer acquisition cost, brand differentiation, or retention friction?',
-      question: 'Where is capital or attention being lost in the current journey?',
+      summary: 'Before creating, we diagnose. What is the fundamental commercial barrier? Is it audience awareness, brand differentiation, or customer retention?',
+      question: 'Where is audience engagement or interest falling off in the current journey?',
     },
     audience: {
-      title: 'AUDIENCE PSYCHOLOGY',
-      summary: 'Observing cultural habits and anxieties across Egypt and the GCC. Identifying what buyers actually desire vs what they claim in surface surveys.',
-      question: 'What emotional reassurance must happen before consideration?',
+      title: 'AUDIENCE RESEARCH',
+      summary: 'Observing cultural habits, everyday routines, and communication preferences across Egypt and the GCC. Identifying what audiences truly value.',
+      question: 'What message and reassurance does the audience need to build genuine trust?',
     },
     insight: {
       title: 'FOUNDATIONAL INSIGHT',
-      summary: 'Distilling complex market observation into a sharp, unassailable human truth that shifts perspective.',
-      question: 'What do competitors take for granted that we can redefine?',
+      summary: 'Distilling audience research and market context into a clear, compelling truth that gives the brand purpose.',
+      question: 'What authentic angle differentiates this brand from competitors?',
     },
     opportunity: {
-      title: 'STRATEGIC OPPORTUNITY',
-      summary: 'Translating the insight into positioning, creative campaigns, content architecture, and measurable growth loops.',
-      question: 'How do we measure success with absolute financial honesty?',
+      title: 'STRATEGIC ROADMAP',
+      summary: 'Translating the insight into content calendars, creative concept development, brand identity assets, and KPI reporting scorecards.',
+      question: 'How do we align creative execution with actionable, honest performance reporting?',
     },
   };
 
@@ -408,7 +408,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           >
             <div className="lg:col-span-8">
               <p className="text-lg sm:text-xl md:text-2xl text-[#171717]/85 font-light leading-relaxed max-w-3xl">
-                Digital marketing strategy, creative direction and data-driven thinking — brought together to build brands that move forward.
+                I connect the dots between marketing strategy, creative execution, client communication, and performance reporting. Bringing together audience research, brand identity, and actionable analytics across Egypt and GCC markets.
               </p>
             </div>
 
@@ -433,7 +433,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
 
         {/* Bottom Scroll Cue */}
         <div className="flex items-center justify-between text-xs font-mono text-[#171717]/40 pt-4 border-t border-[#171717]/5">
-          <span>Dipdux Analytica · Creative Account Lead</span>
+          <span>Dipdux Analytica · Digital Marketing Strategist & Creative Account Manager</span>
           <span className="flex items-center gap-1.5 animate-bounce">
             <span>Scroll to Experience Journey</span>
             <MoveDown className="w-3.5 h-3.5" />
@@ -548,7 +548,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             <span className="hidden sm:inline">Diagnostic Insight → Commercial Architecture</span>
           </div>
           <div className="flex items-center gap-3 text-[11px] text-[#171717]/60">
-            <span>LAT 30.0444° N · LON 31.2357° E</span>
+            <span>LOCATION: EGYPT · MARKETS: EGYPT & GCC</span>
             <span className="px-2 py-0.5 border border-[#315BFF]/30 bg-[#315BFF]/10 text-[#315BFF] font-medium">
               PORTAL: ENGAGED
             </span>
@@ -688,10 +688,10 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   Vector 03
                 </div>
                 <div className="text-xs font-semibold text-[#171717] font-mono">
-                  Commercial Velocity
+                  Performance Reporting
                 </div>
                 <p className="text-[11px] text-[#171717]/65 leading-snug">
-                  Financial accountability, ROAS, CAC reduction & retention loops.
+                  Structured KPI scorecards, dashboard reporting & data-informed iteration.
                 </p>
               </div>
             </div>
@@ -750,17 +750,17 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
             </h2>
 
             <p className="text-sm sm:text-base text-[#171717]/80 leading-relaxed font-light">
-              Strategy without creative intuition is dry; creativity without strategic positioning is gambling. I build roadmaps that unite audience insight, brand narrative, and media distribution.
+              Strategy without creative execution is abstract; creativity without strategic positioning lacks purpose. I build structured roadmaps that connect audience research, content planning, brand identity, and client reporting.
             </p>
 
             <div className="pt-4 border-t border-[#171717]/10 space-y-3 text-xs font-mono text-[#171717]/70">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#315BFF]" />
-                <span>Flagship Accounts: JURAA (Digital Health) & CloudX (B2B Infrastructure)</span>
+                <span>Featured Projects: JURAA (Proposed 30-Day Launch Plan) & CloudX (Ongoing B2B Growth Strategy)</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#315BFF]" />
-                <span>End-to-End Go-To-Market Systems & Conversion Architecture</span>
+                <span>Distinguishing proposed strategy blueprints & creative concepts from active client roadmaps</span>
               </div>
             </div>
 
@@ -904,7 +904,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                 Harmonizing Arabic & Latin Typographic Systems
               </h3>
               <p className="text-xs sm:text-sm text-[#F4F1E9]/75 font-light leading-relaxed">
-                From luxury retail packaging in Riyadh to contemporary healthcare telemedicine in Cairo, every line and weight is chosen with mathematical intent.
+                From Arabic medication UI and brand identity for JURAA to corporate editorial collateral for Dipdux, culinary brand assets for Reef Asia Kitchens, and multi-brand creative directions for Saudi National Day 96, every layout, type choice, and color is shaped with deliberate strategic intent.
               </p>
             </div>
 
@@ -914,14 +914,14 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               className="relative z-20 self-end bg-white/95 text-[#171717] p-5 sm:p-6 border border-white/20 shadow-2xl max-w-sm space-y-3 mt-8"
             >
               <div className="flex items-center justify-between text-[11px] font-mono text-[#315BFF]">
-                <span>FOREGROUND METRIC</span>
+                <span>CREATIVE CRAFT</span>
                 <Sparkles className="w-3.5 h-3.5" />
               </div>
-              <div className="text-2xl font-light tracking-tight font-mono-data">
-                96.2% Positive
+              <div className="text-xl sm:text-2xl font-light tracking-tight font-sans-primary font-medium text-[#171717]">
+                Bilingual Design Systems
               </div>
               <p className="text-xs text-[#171717]/70 font-light leading-snug">
-                Measured cultural sentiment across multi-brand Saudi National Day campaigns.
+                Cohesive Arabic and Latin typography, custom art direction, and cultural resonance across 5 Saudi National Day brand concepts.
               </p>
               <button
                 onClick={() => handleActionClick('creative')}
@@ -958,26 +958,26 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               <span className="font-editorial italic">honest measurement</span>.&rdquo;
             </h2>
             <p className="text-base sm:text-lg text-[#171717]/80 font-light leading-relaxed">
-              Watch raw data disperse and organize: I transform fragmented marketing vanity metrics into unified Power BI and Python models that tie ad spend directly to verified customer acquisition costs.
+              Watch raw data organize into decision-ready clarity: I turn scattered marketing metrics and campaign data into structured Power BI dashboards, Python data analyses, and Google Sheets KPI trackers that provide actionable marketing insights.
             </p>
           </div>
 
           {/* Abstract Scattering Cloud (The "Chaos" State before scroll convergence) */}
           <div className="relative min-h-[120px] flex flex-wrap items-center justify-around gap-4 p-4 font-mono text-xs text-[#171717]/40 border-b border-[#171717]/10 overflow-hidden">
             <span className="chaos-item inline-block rotate-[-12deg] text-base text-[#315BFF]">
-              CAC_BLENDED: $12.68
+              RAW_CAMPAIGN_SPEND
             </span>
             <span className="chaos-item inline-block rotate-[8deg] text-lg font-bold text-[#171717]">
-              +42% WKND
+              COST_PER_LEAD_VAR
             </span>
             <span className="chaos-item inline-block rotate-[-6deg] text-sm text-[#171717]/60">
-              GA4_UNATTRIBUTED_TOUCHPOINTS
+              AUDIENCE_ENGAGEMENT_RATES
             </span>
             <span className="chaos-item inline-block rotate-[14deg] text-xl font-light text-emerald-600">
-              $2.8M PIPELINE
+              CONVERSION_FUNNEL_DATA
             </span>
             <span className="chaos-item inline-block rotate-[-18deg] text-sm text-[#315BFF]">
-              14,200 WAITLIST
+              WEEKLY_KPI_TRACKING
             </span>
           </div>
 
@@ -996,39 +996,39 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               <div className="flex items-center gap-4 text-xs font-mono text-[#F4F1E9]/60">
                 <span>Power BI</span>
                 <span>·</span>
-                <span>Python ETL</span>
+                <span>Python Data Analysis</span>
                 <span>·</span>
-                <span>Google Looker Studio</span>
+                <span>Google Sheets & Looker</span>
               </div>
             </div>
 
             {/* Structured Clarity Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="clarity-card p-5 bg-white/5 border border-[#F4F1E9]/10 space-y-1">
-                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Attributed Pipeline</span>
-                <div className="text-2xl sm:text-3xl font-light font-mono-data text-white">$2.8M+</div>
-                <span className="text-[11px] font-mono text-emerald-400">CloudX B2B Account</span>
+                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Business Intelligence</span>
+                <div className="text-xl sm:text-2xl font-light font-mono-data text-white">Power BI</div>
+                <span className="text-[11px] font-mono text-[#315BFF]">Interactive KPI Dashboards</span>
               </div>
               <div className="clarity-card p-5 bg-white/5 border border-[#F4F1E9]/10 space-y-1">
-                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Pre-Launch Signups</span>
-                <div className="text-2xl sm:text-3xl font-light font-mono-data text-white">14,200+</div>
-                <span className="text-[11px] font-mono text-emerald-400">Juraa Healthcare</span>
+                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Data Analysis</span>
+                <div className="text-xl sm:text-2xl font-light font-mono-data text-white">Python / Pandas</div>
+                <span className="text-[11px] font-mono text-emerald-400">Cohort & Trend Analysis</span>
               </div>
               <div className="clarity-card p-5 bg-white/5 border border-[#F4F1E9]/10 space-y-1">
-                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Campaign Views</span>
-                <div className="text-2xl sm:text-3xl font-light font-mono-data text-white">4.6M+</div>
-                <span className="text-[11px] font-mono text-emerald-400">Saudi National Day</span>
+                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Reporting Tools</span>
+                <div className="text-xl sm:text-2xl font-light font-mono-data text-white">Google Sheets</div>
+                <span className="text-[11px] font-mono text-sky-400">Client Reporting & Scorecards</span>
               </div>
               <div className="clarity-card p-5 bg-white/5 border border-[#F4F1E9]/10 space-y-1">
-                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Reporting Latency</span>
-                <div className="text-2xl sm:text-3xl font-light font-mono-data text-white">60% Faster</div>
-                <span className="text-[11px] font-mono text-emerald-400">Automated ETL Models</span>
+                <span className="text-[10px] font-mono text-[#F4F1E9]/50 uppercase">Decision Support</span>
+                <div className="text-xl sm:text-2xl font-light font-mono-data text-white">Actionable Insights</div>
+                <span className="text-[11px] font-mono text-amber-400">Strategy & Budget Guidance</span>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-[#F4F1E9]/10 text-xs">
               <p className="text-[#F4F1E9]/60 font-light max-w-xl">
-                Representative metrics based on verified historical client and campaign outcomes. No fabricated numbers.
+                Hands-on analytics and reporting: extracting practical clarity from marketing data through custom Power BI visualizations, Python data exploration, and structured Google Sheets KPI models.
               </p>
               <button
                 onClick={() => handleActionClick('data')}
@@ -1073,7 +1073,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                   Live Responsive Demonstrator
                 </span>
                 <div className="text-sm font-medium text-[#171717]">
-                  Testing adaptive viewport fluidity without layout shifts
+                  Demonstrating interactive responsive adaptation across devices
                 </div>
               </div>
 
@@ -1136,11 +1136,11 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
                     Responsive Spatial Discipline
                   </h4>
                   <p className="text-xs text-[#171717]/70 leading-relaxed font-light">
-                    Zero pills. High-contrast typography. Compositor-only animations that respect battery and user focus.
+                    Clean typographic hierarchy, fluid component architecture, and responsive layouts designed with care.
                   </p>
                   <div className="pt-2 flex items-center justify-between text-[11px] font-mono text-[#171717]/60 border-t border-[#171717]/10">
-                    <span>React 19 + TypeScript</span>
-                    <span className="text-[#315BFF]">State: Verified</span>
+                    <span>React & TypeScript</span>
+                    <span className="text-[#315BFF]">Interactive Component</span>
                   </div>
                 </div>
               </div>
@@ -1183,7 +1183,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               </h2>
 
               <p className="text-sm sm:text-base text-[#F4F1E9]/80 font-light leading-relaxed max-w-lg">
-                One person. Multiple connected disciplines. One coherent way of thinking. Let&apos;s discuss how strategic marketing and creative direction can transform your next milestone.
+                One marketer connecting strategy, creative execution, client communication, and performance reporting. Let&apos;s discuss how focused strategy and multidisciplinary execution can move your brand forward.
               </p>
 
               <div className="pt-4 flex flex-wrap items-center gap-4">
@@ -1217,8 +1217,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
           </div>
 
           <div className="pt-8 border-t border-[#F4F1E9]/15 flex flex-col sm:flex-row sm:items-center justify-between text-xs font-mono text-[#F4F1E9]/60 gap-4">
-            <div>Direct Mail: <span className="text-[#F4F1E9]">nouryhazem731@gmail.com</span></div>
-            <div>Markets: Egypt · Kingdom of Saudi Arabia · GCC</div>
+            <div>Direct Mail: <span className="text-[#F4F1E9]">nouryhazem17@gmail.com</span></div>
+            <div>Markets: Egypt · GCC Markets</div>
           </div>
 
         </div>

@@ -13,15 +13,15 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
     {
       role: 'Digital Marketing Strategist & Creative Account Manager',
       company: 'Dipdux Analytica',
-      period: 'Approx. 1 Year · Current Role',
+      period: 'Approx. 6 Months · Current Role',
       location: 'Egypt & Regional Accounts',
       description:
-        'Managing multiple client accounts across Egypt and the GCC (including Saudi Arabia). Orchestrating cross-channel marketing strategies, bridging creative design teams with data analytics engineers, and delivering weekly performance reporting and attribution frameworks.',
+        'Managing client marketing and creative accounts across Egypt and the GCC. Developing cross-channel marketing strategies, aligning creative concept development with client objectives, and delivering weekly performance reporting, KPI scorecards, and custom dashboard development.',
       deliverables: [
-        'Multi-account marketing strategy and creative campaign direction',
-        'Conversion-focused content systems and social campaign calendars',
-        'Executive reporting using Power BI, Google Looker Studio, and Python data scripts',
-        'Direct client stakeholder communication across Cairo and Riyadh'
+        'Marketing strategy, audience research, and multi-channel campaign planning',
+        'Conversion-focused content calendars, graphic design, and brand identity systems',
+        'Performance reporting and dashboard development using Power BI, Google Sheets, and Python',
+        'Direct client stakeholder communication and account management across Egypt and GCC markets'
       ]
     }
   ];
@@ -49,20 +49,20 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
 
   const skillMatrix = [
     {
-      category: 'Marketing & Account Strategy',
-      skills: ['Go-to-Market Strategy', 'Multi-Account Management', 'Audience Segmentation', 'Funnel Optimization', 'B2B Thought Leadership', 'Media Planning']
+      category: 'Marketing Strategy & Accounts',
+      skills: ['Marketing Strategy', 'Audience Research', 'Content Calendars', 'Client Account Management', 'Campaign Planning', 'Market Positioning']
     },
     {
-      category: 'Creative & Art Direction',
-      skills: ['Brand Identity Systems', 'Visual Storytelling', 'Campaign Art Direction', 'Typography Hierarchy', 'Content Production Briefing', 'Bilingual (Arabic/English) Copy']
+      category: 'Creative Direction & Design',
+      skills: ['Creative Concept Development', 'Graphic Design', 'Brand Identity Systems', 'Art Direction', 'Typography Hierarchy', 'Bilingual (Arabic/English) Systems']
     },
     {
       category: 'Data & Analytics',
-      skills: ['Power BI Dashboards', 'Python (Pandas/NumPy ETL)', 'Google Analytics 4', 'Attribution Modeling', 'Google Sheets Automation', 'CAC / ROAS Tracking']
+      skills: ['Power BI Dashboards', 'Python (Data Analysis with Pandas)', 'Google Sheets Reporting', 'KPI Scorecards & Tracking', 'Campaign Performance Analysis', 'Actionable Insights']
     },
     {
-      category: 'Interactive Web & Tech',
-      skills: ['React & JavaScript', 'TypeScript Architecture', 'Tailwind CSS', 'Figma Prototyping', 'Responsive UI Engineering', 'Semantic HTML / SEO']
+      category: 'Interactive Web Development',
+      skills: ['React & JavaScript', 'Responsive Prototyping', 'TypeScript', 'Tailwind CSS', 'Web Performance & Accessibility', 'Component Architecture']
     }
   ];
 
@@ -98,7 +98,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
               <div className="flex items-center justify-between">
                 <MonogramN size="md" slashColor="#315BFF" inkColor="#F4F1E9" interactive={false} />
                 <span className="text-[11px] font-mono text-[#F4F1E9]/60 uppercase tracking-widest">
-                  Cairo · Egypt
+                  Egypt · GCC Markets
                 </span>
               </div>
 
@@ -158,7 +158,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
                   Most organizations suffer from a structural disconnect: analytical minds look at spreadsheets and fail to understand what stirs the human heart; creative minds produce stunning visuals that fail to generate pipeline or pay for themselves.
                 </p>
                 <p>
-                  My work lives at the exact intersection of these two worlds. With a background that spans <strong>Computer Science at University of the People</strong>, <strong>Mathematics & STEM Education at Minya University</strong>, and a year managing multi-client accounts at <strong>Dipdux Analytica</strong>, I approach marketing as both an empirical science and a high-order craft.
+                  My work lives at the exact intersection of these two worlds. With a background that spans <strong>Computer Science at University of the People</strong>, <strong>Mathematics & STEM Education at Minya University</strong>, and approximately six months managing multi-channel client accounts at <strong>Dipdux Analytica</strong>, I approach marketing as both an empirical science and a high-order craft.
                 </p>
                 <p>
                   Whether defining the go-to-market positioning for a digital healthcare provider like Juraa, architecting sovereign cloud narratives for enterprise B2B leaders like CloudX, or orchestrating culturally resonant national campaigns across Saudi Arabia, my principle remains constant: <em>Every creative decision must have a strategic hypothesis, and every result must be honestly measured.</em>
@@ -190,7 +190,7 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
                   <span className="font-mono text-xs text-[#315BFF] font-bold">03. Measurement Rigor</span>
                   <h4 className="text-sm font-semibold text-[#171717]">Zero Vanity Metrics</h4>
                   <p className="text-xs text-[#171717]/70 font-light leading-relaxed">
-                    Likes don&apos;t pay payroll. Attribution, CAC efficiency, and deal pipeline do.
+                    Likes don&apos;t pay payroll. Clear KPIs, audience retention, and actionable business insights do.
                   </p>
                 </div>
                 <div className="p-4 bg-white/70 border border-[#171717]/10 space-y-1.5">
@@ -328,15 +328,15 @@ export const AboutView: React.FC<AboutViewProps> = ({ onNavigateContact }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-[#F4F1E9]/80 font-light leading-relaxed">
             <div className="space-y-2">
               <span className="font-mono text-[11px] text-[#315BFF] uppercase block">Positioning</span>
-              <p>Digital Marketing Strategist & Creative Account Manager specializing in cross-discipline brand architecture and data attribution across Egypt and the GCC.</p>
+              <p>Digital Marketing Strategist & Creative Account Manager connecting marketing strategy, creative execution, client communication, and performance reporting across Egypt and GCC markets.</p>
             </div>
             <div className="space-y-2">
               <span className="font-mono text-[11px] text-[#315BFF] uppercase block">Regional Markets</span>
-              <p>Active experience handling multi-brand client accounts in Cairo, Riyadh, Jeddah, and broader GCC corridors with bilingual fluency (Arabic / English).</p>
+              <p>Active project experience handling multi-brand client accounts across Egypt and GCC markets with bilingual fluency (Arabic / English).</p>
             </div>
             <div className="space-y-2">
               <span className="font-mono text-[11px] text-[#315BFF] uppercase block">Direct Inquiries</span>
-              <p>Open for full-time senior account/strategy leadership and select consultative advisory engagements.</p>
+              <p>Open for full-time Digital Marketing Strategist and Creative Account Manager roles and high-impact project opportunities.</p>
             </div>
           </div>
         </div>

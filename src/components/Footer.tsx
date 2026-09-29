@@ -2,7 +2,7 @@ import React from 'react';
 import { MonogramN } from './MonogramN';
 import { SoundToggle } from './SoundToggle';
 import { soundEngine } from '../utils/soundEngine';
-import { ArrowUpRight, Mail, Linkedin, FileText, Globe } from 'lucide-react';
+import { ArrowUpRight, Mail, Linkedin, FileText, Globe, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -34,11 +34,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               &ldquo;I connect the dots between strategy, creativity, and data.&rdquo;
             </p>
             <p className="text-xs text-[#F4F1E9]/60 max-w-md leading-relaxed">
-              Digital Marketing Strategist & Creative Account Manager. Translating business complexity into brand resonance and verified outcomes across Egypt and the GCC.
+              Digital Marketing Strategist & Creative Account Manager. Connecting marketing strategy, creative execution, client communication, and performance reporting across Egypt and GCC markets.
             </p>
             <div className="flex items-center gap-3 text-xs text-[#F4F1E9]/70 pt-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for strategic marketing & creative account management opportunities (Egypt & GCC)</span>
+              <span>Available for marketing strategy & creative account management opportunities (Egypt & GCC)</span>
             </div>
           </div>
 
@@ -96,15 +96,25 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <div className="space-y-3 text-xs">
               <a
-                href="mailto:nouryhazem731@gmail.com"
+                href="mailto:nouryhazem17@gmail.com"
                 className="flex items-center gap-2 text-[#F4F1E9]/90 hover:text-[#315BFF] transition-colors group"
               >
                 <Mail className="w-3.5 h-3.5 text-[#315BFF]" />
-                <span>nouryhazem731@gmail.com</span>
+                <span>nouryhazem17@gmail.com</span>
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
               <a
-                href="https://www.linkedin.com"
+                href="https://wa.me/201028265294"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-[#F4F1E9]/80 hover:text-[#315BFF] transition-colors group"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-[#315BFF]" />
+                <span>WhatsApp: 01028265294</span>
+                <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nouryhazem?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 text-[#F4F1E9]/70 hover:text-[#315BFF] transition-colors group"
@@ -114,7 +124,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
               <a
-                href="https://www.behance.net"
+                href="https://www.behance.net/nouryhazem"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 text-[#F4F1E9]/70 hover:text-[#315BFF] transition-colors group"
@@ -141,7 +151,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             © {new Date().getFullYear()} Nouri Hazem · All rights reserved.
           </div>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <span>Cairo, Egypt · GCC Markets</span>
+            <span>Egypt · GCC Markets</span>
             <span>·</span>
             <button
               onClick={() => handleFooterNav('contact')}
