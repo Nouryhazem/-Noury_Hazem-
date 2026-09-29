@@ -6,6 +6,7 @@ import {
 } from '../../data/creativeData';
 import { soundEngine } from '../../utils/soundEngine';
 import { MonogramN } from '../../components/MonogramN';
+import { getAssetUrl } from '../../utils/assetUrl';
 import {
   ArrowLeft,
   ArrowRight,
@@ -260,7 +261,7 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
           {activeSlide && (
             <img
               key={activeSlide.id}
-              src={activeSlide.image}
+              src={getAssetUrl(activeSlide.image)}
               alt={activeSlide.title}
               className="max-h-full max-w-full w-auto h-auto object-contain p-4 sm:p-8 drop-shadow-2xl transition-all duration-300 ease-out"
               style={{ imageRendering: 'auto' }}
@@ -384,7 +385,7 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
                   aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
                 >
                   <img
-                    src={slide.image}
+                    src={getAssetUrl(slide.image)}
                     alt={slide.title}
                     className="w-full h-full object-contain p-1.5 transition-transform duration-300 group-hover/thumb:scale-105"
                   />
@@ -454,7 +455,7 @@ export const CreativeCaseStudyView: React.FC<CreativeCaseStudyViewProps> = ({
             className="max-h-[92vh] max-w-[94vw] flex flex-col items-center cursor-default space-y-4"
           >
             <img
-              src={activeSlide.image}
+              src={getAssetUrl(activeSlide.image)}
               alt={activeSlide.title}
               className="max-h-[80vh] max-w-[92vw] object-contain drop-shadow-2xl"
             />

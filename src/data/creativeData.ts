@@ -155,10 +155,10 @@ export const SAUDI_NATIONAL_DAY_DATA = {
       concept: 'Our Story Continues · تتغير التفاصيل ويبقى لنا كل ما يميزنا',
       description:
         'An intergenerational campaign and regional collector tumbler box honoring the 6 distinct provinces of the Kingdom, connecting heritage Arabic coffee rituals with contemporary specialty cups.',
-      heroImage: '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
+      heroImage: '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
       heroCandidates: [
-        '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
         '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
+        '/assets/creative/saudi-national-day-96/ratio/ratio5.jpeg',
       ],
       accentColor: '#174A37',
       status: 'Campaign Concept 2026',
@@ -313,28 +313,6 @@ export const CREATIVE_PROJECTS: CreativeProject[] = [
         overview:
           'The primary graphic design deliverables and authentic mobile interface cards demonstrating the visual system in practice.',
         executions: [
-          {
-            id: 'juraa-ex-01',
-            title: 'Daily Medication Timeline UI Flow',
-            titleArabic: 'جدول الجرعات اليومي والانسيابية البصرية',
-            category: 'UI/UX Graphic System',
-            aspectRatio: '1/1',
-            primaryImage: '/assets/creative/juraa/j1.PNG',
-            candidateImages: ['/assets/creative/juraa/j1.PNG'],
-            caption: 'Structured dose reminder cards arranged by morning, afternoon, and evening routine blocks.',
-            captionArabic: 'تصميم بطاقات الجرعات اليومية وفق فترات النهار مع تفاصيل الجرعة والوقت.',
-          },
-          {
-            id: 'juraa-ex-02',
-            title: 'Adherence Analytics & Health History',
-            titleArabic: 'سجل الالتزام وإحصائيات الصحة الإيجابية',
-            category: 'Data Visualization & UI',
-            aspectRatio: '4/5',
-            primaryImage: '/assets/creative/juraa/j2.PNG',
-            candidateImages: ['/assets/creative/juraa/j2.PNG'],
-            caption: 'Weekly adherence metrics and streak motivation designed with empathetic visuals and encouraging progress feedback.',
-            captionArabic: 'عرض نسب الالتزام الأسبوعي وسجل الجرعات المكتملة بصرياً بأسلوب داعم ومحفز.',
-          },
           {
             id: 'juraa-ex-03',
             title: 'Intelligent Dose Scheduling & Routine Architecture',
@@ -616,7 +594,7 @@ export const CREATIVE_PROJECTS: CreativeProject[] = [
     heroImage: '/assets/creative/saudi-national-day-96/the-room/room1.jpeg',
     heroImageCandidates: [
       '/assets/creative/saudi-national-day-96/the-room/room1.jpeg',
-      '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
+      '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
     ],
     accentColor: '#165B33',
     isCollection: true,
@@ -882,17 +860,6 @@ export const THE_ROOM_CASE_STUDY: CreativeChapterData = {
         caption: 'Refined brand poster contrasting stark black and white typography with the signature bordeaux espresso rim.',
         captionArabic: 'ملصق إعلاني يبرز البساطة التحريرية والتفاصيل الراقية لفناجين القهوة ذات الإطار الخمري.',
       },
-      {
-        id: 'the-room-ex-03',
-        title: 'Commemorative Takeaway Cup & Packaging',
-        titleArabic: 'كوب القهوة التذكاري وتغليف اليوم الوطني',
-        category: 'Packaging & Retail',
-        aspectRatio: '1/1',
-        primaryImage: '/assets/creative/saudi-national-day-96/the-room/room4.jpeg',
-        candidateImages: ['/assets/creative/saudi-national-day-96/the-room/room4.jpeg'],
-        caption: 'Minimalist takeaway cup artwork pairing the national green tone with modern typography and mudbrick geometry.',
-        captionArabic: 'تصميم الكوب التذكاري الورقي لليوم الوطني 96 بنقوش معمارية ولمسات خضراء أنيقة.',
-      },
     ],
   },
   chapter05: {
@@ -1050,10 +1017,10 @@ export const RATIO_CASE_STUDY: CreativeChapterData = {
     disciplines: ['Campaign Concept', 'Packaging Design', 'Art Direction', 'Cultural Storytelling'],
     introduction:
       'Ratio celebrates Saudi National Day 96 with an expansive campaign and collector package honoring the 6 distinct provinces of the Kingdom. Exploring intergenerational connection between grandmothers’ authentic coffee rituals and contemporary specialty brewing.',
-    heroImage: '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
+    heroImage: '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
     heroImageCandidates: [
-      '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
       '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
+      '/assets/creative/saudi-national-day-96/ratio/ratio5.jpeg',
     ],
   },
   chapter01: {
@@ -1084,10 +1051,10 @@ export const RATIO_CASE_STUDY: CreativeChapterData = {
     verbalHookArabic: 'تتغير التفاصيل. ويبقى لنا كل ما يميزنا · من يد ليد',
     strategicRationale:
       'Coffee in Saudi Arabia is not just a caffeinated beverage; it is a sacred cultural covenant of hospitality. The campaign treats every cup as a vessel of living heritage.',
-    featuredVisual: '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
+    featuredVisual: '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
     featuredVisualCandidates: [
-      '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
       '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
+      '/assets/creative/saudi-national-day-96/ratio/ratio5.jpeg',
     ],
   },
   chapter03: {
@@ -1124,17 +1091,6 @@ export const RATIO_CASE_STUDY: CreativeChapterData = {
     overview:
       'The comprehensive campaign spans packaging design, landscape panoramas, architectural framing, and intergenerational family moments.',
     executions: [
-      {
-        id: 'ratio-ex-02',
-        title: 'Commemorative Ceramic Cup & Heritage Foliage',
-        titleArabic: 'كوب القهوة التذكاري مع تفاصيل التراث الأصيل',
-        category: 'Product & Packaging',
-        aspectRatio: '4/5',
-        primaryImage: '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
-        candidateImages: ['/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg'],
-        caption: 'Commemorative Ratio cup with green botanical accents and commemorative National Day 96 lettering.',
-        captionArabic: 'كوب ريشيو التذكاري المصمم بلمسات خضراء أنيقة وهوية اليوم الوطني السعودي.',
-      },
       {
         id: 'ratio-ex-03',
         title: 'The Intergenerational Toast Diptych',
@@ -1200,17 +1156,6 @@ export const RATIO_CASE_STUDY: CreativeChapterData = {
         candidateImages: ['/assets/creative/saudi-national-day-96/ratio/ratio9.jpeg'],
         caption: 'Mobile-first social asset highlighting the limited-edition tumbler offer for the first 96 customers.',
         captionArabic: 'تصميم رقمي للهواتف الذكية يبرز العرض الخاص بأول 96 طلباً لليوم الوطني.',
-      },
-      {
-        id: 'ratio-ex-09',
-        title: 'Collector Box Unboxing Experience',
-        titleArabic: 'تجربة فتح صندوق المجموعة التذكارية',
-        category: 'Unboxing Collateral',
-        aspectRatio: '4/5',
-        primaryImage: '/assets/creative/saudi-national-day-96/ratio/ratio10.jpeg',
-        candidateImages: ['/assets/creative/saudi-national-day-96/ratio/ratio10.jpeg'],
-        caption: 'Unboxing view showing the 6 color-coded tumblers nestled in protective foam with commemorative certificate.',
-        captionArabic: 'صورة توضح تجربة فتح الصندوق الفاخر والأكواب الستة بألوانها الإقليمية المتقنة.',
       },
     ],
   },
@@ -1350,17 +1295,6 @@ export const BEARU_CASE_STUDY: CreativeChapterData = {
         caption: 'Brush script lettering on café glass door with bear face mark welcoming little explorers.',
         captionArabic: 'حروف بيضاء انسيابية على زجاج الكافيه ترحب بالمستكشفين الصغار مع أيقونة وجه الدب اللطيف.',
       },
-      {
-        id: 'bearu-ex-04',
-        title: 'Child Hands Coloring the Kingdom’s Heritage',
-        titleArabic: 'أيدي الأطفال تلوّن معالم الوطن مع مجسم بيارو الخشبي',
-        category: 'Activity & Craft',
-        aspectRatio: '4/5',
-        primaryImage: '/assets/creative/saudi-national-day-96/bearu/b5.jpeg',
-        candidateImages: ['/assets/creative/saudi-national-day-96/bearu/b5.jpeg'],
-        caption: 'Child coloring a green palm tree and mudbrick fort next to wooden Béaru toy and flag: "دام عزك يا وطن / Tiny Hands, Brighter Tomorrows".',
-        captionArabic: 'أنامل طفلة تبدع في تلوين نخلة ومعالم نجدية بجانب مجسم الدب الخشبي وعلم التوحيد الأخضر.',
-      },
     ],
   },
   chapter05: {
@@ -1403,26 +1337,6 @@ export interface CreativeSlide {
 export function getProjectSlides(slug: string, data?: CreativeChapterData): CreativeSlide[] {
   if (slug === 'juraa-creative-campaign' || slug === 'juraa-creative' || slug === 'juraa') {
     return [
-      {
-        id: 'juraa-slide-01',
-        image: '/assets/creative/juraa/j1.PNG',
-        title: 'Daily Medication Timeline UI Flow',
-        titleArabic: 'جدول الجرعات اليومي والانسيابية البصرية',
-        category: 'UI/UX Graphic System',
-        caption: 'Structured dose reminder cards arranged by morning, afternoon, and evening routine blocks.',
-        captionArabic: 'تصميم بطاقات الجرعات اليومية وفق فترات النهار مع تفاصيل الجرعة والوقت.',
-        aspectRatio: '1/1',
-      },
-      {
-        id: 'juraa-slide-02',
-        image: '/assets/creative/juraa/j2.PNG',
-        title: 'Adherence Analytics & Health History',
-        titleArabic: 'سجل الالتزام وإحصائيات الصحة الإيجابية',
-        category: 'Data Visualization & UI',
-        caption: 'Weekly adherence metrics and streak motivation designed with empathetic visuals and encouraging progress feedback.',
-        captionArabic: 'عرض نسب الالتزام الأسبوعي وسجل الجرعات المكتملة بصرياً بأسلوب داعم ومحفز.',
-        aspectRatio: '4/5',
-      },
       {
         id: 'juraa-slide-03',
         image: '/assets/creative/juraa/j3.PNG',
@@ -1563,16 +1477,6 @@ export function getProjectSlides(slug: string, data?: CreativeChapterData): Crea
         captionArabic: 'ملصق إعلاني يبرز البساطة التحريرية والتفاصيل الراقية لفناجين القهوة ذات الإطار الخمري.',
         aspectRatio: '1/1',
       },
-      {
-        id: 'the-room-slide-03',
-        image: '/assets/creative/saudi-national-day-96/the-room/room4.jpeg',
-        title: 'Commemorative Takeaway Cup & Packaging',
-        titleArabic: 'كوب القهوة التذكاري وتغليف اليوم الوطني',
-        category: 'Packaging & Retail',
-        caption: 'Minimalist takeaway cup artwork pairing the national green tone with modern typography and mudbrick geometry.',
-        captionArabic: 'تصميم الكوب التذكاري الورقي لليوم الوطني 96 بنقوش معمارية ولمسات خضراء أنيقة.',
-        aspectRatio: '1/1',
-      },
     ];
   }
 
@@ -1603,16 +1507,6 @@ export function getProjectSlides(slug: string, data?: CreativeChapterData): Crea
 
   if (slug === 'ratio-snd96' || slug === 'snd-ratio') {
     return [
-      {
-        id: 'ratio-slide-01',
-        image: '/assets/creative/saudi-national-day-96/ratio/ratio1.jpeg',
-        title: 'Commemorative Ceramic Cup & Heritage Details',
-        titleArabic: 'كوب القهوة التذكاري مع تفاصيل التراث الأصيل',
-        category: 'Product & Packaging',
-        caption: 'Commemorative Ratio cup with green botanical accents and commemorative National Day 96 lettering.',
-        captionArabic: 'كوب ريشيو التذكاري المصمم بلمسات خضراء أنيقة وهوية اليوم الوطني السعودي.',
-        aspectRatio: '4/5',
-      },
       {
         id: 'ratio-slide-02',
         image: '/assets/creative/saudi-national-day-96/ratio/ratio2.jpeg',
@@ -1673,16 +1567,6 @@ export function getProjectSlides(slug: string, data?: CreativeChapterData): Crea
         captionArabic: 'تصميم رقمي للهواتف الذكية يبرز العرض الخاص بأول 96 طلباً لليوم الوطني.',
         aspectRatio: '4/5',
       },
-      {
-        id: 'ratio-slide-08',
-        image: '/assets/creative/saudi-national-day-96/ratio/ratio10.jpeg',
-        title: 'Collector Box Unboxing Experience',
-        titleArabic: 'تجربة فتح صندوق المجموعة التذكارية',
-        category: 'Unboxing Collateral',
-        caption: 'Unboxing view showing the 6 color-coded tumblers nestled in protective foam with commemorative certificate.',
-        captionArabic: 'صورة توضح تجربة فتح الصندوق الفاخر والأكواب الستة بألوانها الإقليمية المتقنة.',
-        aspectRatio: '4/5',
-      },
     ];
   }
 
@@ -1717,16 +1601,6 @@ export function getProjectSlides(slug: string, data?: CreativeChapterData): Crea
         caption: 'Brush script lettering on café glass door with bear face mark welcoming little explorers.',
         captionArabic: 'حروف بيضاء انسيابية على زجاج الكافيه ترحب بالمستكشفين الصغار مع أيقونة وجه الدب اللطيف.',
         aspectRatio: '1/1',
-      },
-      {
-        id: 'bearu-slide-04',
-        image: '/assets/creative/saudi-national-day-96/bearu/b5.jpeg',
-        title: 'Child Hands Coloring the Kingdom’s Heritage',
-        titleArabic: 'أيدي الأطفال تلوّن معالم الوطن مع مجسم بيارو الخشبي',
-        category: 'Activity & Craft',
-        caption: 'Child coloring a green palm tree and mudbrick fort next to wooden Béaru toy and flag: "دام عزك يا وطن / Tiny Hands, Brighter Tomorrows".',
-        captionArabic: 'أنامل طفلة تبدع في تلوين نخلة ومعالم نجدية بجانب مجسم الدب الخشبي وعلم التوحيد الأخضر.',
-        aspectRatio: '4/5',
       },
     ];
   }

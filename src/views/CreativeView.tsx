@@ -4,6 +4,7 @@ import { CreativeImage } from '../components/creative/CreativeImage';
 import { MonogramN } from '../components/MonogramN';
 import { DisciplineTabs } from '../components/DisciplineTabs';
 import { soundEngine } from '../utils/soundEngine';
+import { getAssetUrl } from '../utils/assetUrl';
 import {
   ArrowUpRight,
   ArrowRight,
@@ -342,21 +343,10 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Visual Showcase (Preview of the 5 Brands) */}
-            <div className="lg:col-span-7 space-y-4">
-              <CreativeImage
-                src={CREATIVE_PROJECTS[2].heroImage}
-                candidates={CREATIVE_PROJECTS[2].heroImageCandidates}
-                alt="Saudi National Day 96 Collection"
-                aspectRatio="16/9"
-                allowZoom={false}
-                className="shadow-md"
-                badge="03 / SAUDI NATIONAL DAY 96"
-              />
-
-              {/* 5 Mini Brand Image Thumbnails Grid */}
-              <div className="grid grid-cols-5 gap-2 pt-2">
-                {SAUDI_NATIONAL_DAY_DATA.featuredBrands.map((b) => (
+            {/* Visual Showcase (Autonomous 5-Brand Showcase without artificial parent cover) */}
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {SAUDI_NATIONAL_DAY_DATA.featuredBrands.map((b, idx) => (
                   <div
                     key={b.id}
                     onClick={(e) => {
@@ -364,19 +354,28 @@ export const CreativeView: React.FC<CreativeViewProps> = ({
                       soundEngine.playEditorialClick();
                       onSelectProject(b.slug);
                     }}
-                    className="border border-[#171717]/15 bg-white p-1.5 text-center space-y-1 hover:border-[#165B33] transition-colors cursor-pointer group/thumb"
+                    className={`border border-[#171717]/15 bg-white p-2.5 text-center space-y-2 hover:border-[#165B33] hover:shadow-lg transition-all cursor-pointer group/thumb ${
+                      idx === 0 ? 'col-span-2 sm:col-span-1' : ''
+                    }`}
                   >
-                    <div className="aspect-square w-full overflow-hidden bg-[#EAE6DC] relative">
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-[#EAE6DC] relative border border-[#171717]/10">
                       <img
-                        src={b.heroImage}
+                        src={getAssetUrl(b.heroImage)}
                         alt={b.title}
                         className="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform"
                       />
+                      <span className="absolute top-1.5 left-1.5 px-1.5 py-0.5 bg-[#171717]/85 text-[9px] font-mono text-white">
+                        {b.number}
+                      </span>
                     </div>
-                    <span className="text-[9px] font-mono text-[#165B33] font-semibold block">{b.number}</span>
-                    <span className="text-[10px] font-semibold text-[#171717] block truncate">
-                      {b.title.split(' ')[0]}
-                    </span>
+                    <div className="space-y-0.5">
+                      <span className="text-[11px] font-semibold text-[#171717] block truncate">
+                        {b.title}
+                      </span>
+                      <span className="text-[9px] font-mono text-[#165B33] block truncate">
+                        {b.discipline}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>

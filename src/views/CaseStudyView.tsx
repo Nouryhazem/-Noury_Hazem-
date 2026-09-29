@@ -9,6 +9,7 @@ import { CreativeCaseStudyView } from './creative/CreativeCaseStudyView';
 import { ALL_INDIVIDUAL_CREATIVE_PROJECTS } from '../data/creativeData';
 import { ArrowLeft, ArrowRight, ExternalLink, CheckCircle2, ChevronRight, Layers, BarChart3, Lightbulb, Compass, Palette, Rocket, BookOpen, AlertCircle } from 'lucide-react';
 import { MonogramN } from '../components/MonogramN';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface CaseStudyViewProps {
   project: Project;
@@ -198,7 +199,7 @@ export const CaseStudyView: React.FC<CaseStudyViewProps> = ({
       <section className="max-w-7xl mx-auto px-6 sm:px-8 mb-20">
         <div className="relative aspect-16/9 w-full overflow-hidden bg-[#171717] border border-[#171717]/10 group">
           <img
-            src={project.heroImage}
+            src={getAssetUrl(project.heroImage)}
             alt={`${project.title} case study visual direction`}
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"

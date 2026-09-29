@@ -1,6 +1,7 @@
 import React from 'react';
+import { getAssetUrl } from '../utils/assetUrl';
 
-export const JURAA_LOGO_PATH = '/assets/creative/juraa/logo.png';
+export const JURAA_LOGO_PATH = getAssetUrl('/assets/creative/juraa/logo.png');
 
 export type JuraaLogoVariant =
   | 'primary'

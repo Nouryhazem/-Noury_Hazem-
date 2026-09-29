@@ -510,7 +510,7 @@ export const PROJECTS: Project[] = [
     status: 'Completed Client Work',
     tagline: 'Honoring Saudi national pride with cultural authenticity and contemporary art direction',
     summary: 'Choreographing multi-brand creative campaigns for Saudi National Day (93 & 94) that resonated emotionally while avoiding cliché promotional gimmicks.',
-    heroImage: '/assets/images/saudi_national_day_art_1790649741216.jpg',
+    heroImage: '/assets/creative/saudi-national-day-96/the-room/room1.jpeg',
     accentColor: '#315BFF',
     overview: {
       statement: 'Every September, Saudi brands flood social feeds with generic green filters and shallow discounts. Our clients needed campaigns of genuine dignity and emotional depth.',
@@ -590,7 +590,7 @@ export const PROJECTS: Project[] = [
     status: 'Ongoing Work',
     tagline: 'Unifying client strategy, creative campaigns, and data analytics under one roof',
     summary: 'Nouri’s core professional crucible: managing multi-client marketing accounts, bridging creative designers with data engineers, and turning raw analytics into actionable growth.',
-    heroImage: '/assets/creative/dipdux/IMG_7638.PNG',
+    heroImage: '/assets/images/cloudx.png',
     accentColor: '#315BFF',
     overview: {
       statement: 'At Dipdux Analytica, Nouri leads marketing strategies across diverse industries, orchestrating campaigns, reporting on KPIs, and ensuring client business objectives are met with creative flair.',
@@ -670,7 +670,7 @@ export const PROJECTS: Project[] = [
     status: 'Proposed Campaign Concept',
     tagline: 'Empowering the next generation of Arab creative technologists',
     summary: 'A proposed brand framework and launch campaign for a speculative regional accelerator designed to fast-track young Arab designers, copywriters, and developers into global creative agencies.',
-    heroImage: '/assets/images/saudi_national_day_art_1790649741216.jpg', // fallback image
+    heroImage: '/assets/images/cloudx.png', // fallback image
     accentColor: '#315BFF',
     overview: {
       statement: 'This proposed campaign concept addresses the gap between traditional academic design education and modern digital product realities in the GCC.',

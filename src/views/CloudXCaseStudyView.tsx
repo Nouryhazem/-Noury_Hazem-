@@ -3,6 +3,7 @@ import { CLOUDX_CASE_STUDY } from '../data/cloudxData';
 import { PROJECTS } from '../data/projectsData';
 import { soundEngine } from '../utils/soundEngine';
 import { MonogramN } from '../components/MonogramN';
+import { getAssetUrl } from '../utils/assetUrl';
 import {
   ArrowLeft,
   ArrowRight,
@@ -220,7 +221,7 @@ export const CloudXCaseStudyView: React.FC<CloudXCaseStudyViewProps> = ({
         <div className="mt-12">
           <div className="aspect-16/9 md:aspect-21/9 w-full bg-[#171717] overflow-hidden relative border border-[#171717]/15 group">
             <img
-              src={data.meta.heroImage}
+              src={getAssetUrl(data.meta.heroImage)}
               alt="CloudX Web Services B2B Campaign Architecture"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               onError={(e) => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MonogramN } from '../components/MonogramN';
 import { Project, PROJECTS } from '../data/projectsData';
 import { soundEngine } from '../utils/soundEngine';
+import { getAssetUrl } from '../utils/assetUrl';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'motion/react';
@@ -783,7 +784,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onNavigate }) => {
               >
                 <div className="aspect-16/9 bg-[#171717] overflow-hidden relative border border-[#171717]/10">
                   <img
-                    src={project.heroImage}
+                    src={getAssetUrl(project.heroImage)}
                     alt={project.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"

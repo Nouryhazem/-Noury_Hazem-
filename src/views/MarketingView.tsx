@@ -4,6 +4,7 @@ import { soundEngine } from '../utils/soundEngine';
 import { ArrowUpRight, ArrowRight, CheckCircle2, Filter, Layers } from 'lucide-react';
 import { MonogramN } from '../components/MonogramN';
 import { DisciplineTabs } from '../components/DisciplineTabs';
+import { getAssetUrl } from '../utils/assetUrl';
 
 interface MarketingViewProps {
   onSelectProject: (slug: string) => void;
@@ -224,7 +225,7 @@ export const MarketingView: React.FC<MarketingViewProps> = ({
               {/* Preview image */}
               <div className="aspect-4/3 w-full bg-[#171717] overflow-hidden relative border border-[#171717]/10">
                 <img
-                  src={activeHoveredProject.heroImage}
+                  src={getAssetUrl(activeHoveredProject.heroImage)}
                   alt={activeHoveredProject.title}
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
@@ -284,7 +285,7 @@ export const MarketingView: React.FC<MarketingViewProps> = ({
               >
                 <div className="aspect-16/9 bg-[#171717] overflow-hidden relative">
                   <img
-                    src={project.heroImage}
+                    src={getAssetUrl(project.heroImage)}
                     alt={project.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"

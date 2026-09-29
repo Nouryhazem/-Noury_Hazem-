@@ -1,74 +1,59 @@
 import React, { useState } from 'react';
 import { Maximize2, X, Sparkles, Smartphone, CheckCircle2 } from 'lucide-react';
 import { soundEngine } from '../utils/soundEngine';
+import { getAssetUrl } from '../utils/assetUrl';
 
-export const JURAA_ORIGINAL_LOGO = '/assets/creative/juraa/logo.png';
-export const JURAA_HERO_MOCKUP = '/assets/creative/juraa/juraa_hero.png';
+export const JURAA_ORIGINAL_LOGO = getAssetUrl('/assets/creative/juraa/logo.png');
+export const JURAA_HERO_MOCKUP = getAssetUrl('/assets/creative/juraa/juraa_hero.png');
 
 export const JURAA_AUTHENTIC_APP_SCREENS = [
   {
-    id: 'j1',
-    src: '/assets/creative/juraa/j1.PNG',
-    title: 'Daily Medication Timeline',
-    titleArabic: 'جدول الجرعات اليومي',
-    description: 'Clean time-segmented schedule separating morning, afternoon, and evening prescriptions with clear dose metrics.',
-    badge: 'SCREEN 01 · TIMELINE',
-  },
-  {
-    id: 'j2',
-    src: '/assets/creative/juraa/j2.PNG',
-    title: 'Adherence & Health Analytics',
-    titleArabic: 'سجل الالتزام الدوائي',
-    description: 'Weekly compliance percentage tracking, streak motivation, and refill alerts designed with high empathy and zero clinical fear.',
-    badge: 'SCREEN 02 · ADHERENCE',
-  },
-  {
     id: 'j3',
-    src: '/assets/creative/juraa/j3.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j3.PNG'),
     title: 'Intelligent Dose Scheduling',
     titleArabic: 'الجدولة الذكية للجرعات',
     description: 'Customizable routine schedules adapting medication timings around meals, prayer times, and personal rhythms.',
-    badge: 'SCREEN 03 · SCHEDULING',
+    badge: 'SCREEN 01 · SCHEDULING',
   },
   {
     id: 'j4',
-    src: '/assets/creative/juraa/j4.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j4.PNG'),
     title: 'Family Care & Shared Monitoring',
     titleArabic: 'رعاية العائلة والمشاركة',
     description: 'Caretaker circle sync allowing elderly parents and family members to share confirmation of completed daily doses.',
-    badge: 'SCREEN 04 · FAMILY SYNC',
+    badge: 'SCREEN 02 · FAMILY SYNC',
   },
   {
     id: 'j5',
-    src: '/assets/creative/juraa/j5.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j5.PNG'),
     title: 'Health Insights & Habit Progression',
     titleArabic: 'تقارير الصحة ومؤشرات التعافي',
     description: 'Empathetic habit tracking celebrating positive consistency and providing clear, actionable health summaries.',
-    badge: 'SCREEN 05 · HEALTH METRICS',
+    badge: 'SCREEN 03 · HEALTH METRICS',
   },
   {
     id: 'j6',
-    src: '/assets/creative/juraa/j6.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j6.PNG'),
     title: 'Empathetic Onboarding & Brand System',
     titleArabic: 'واجهة الترحيب والهوية البصرية',
     description: 'Welcoming onboarding narrative establishing trust, reassuring language, and effortless first-time profile setup.',
-    badge: 'SCREEN 06 · ONBOARDING',
+    badge: 'SCREEN 04 · ONBOARDING',
   },
   {
     id: 'j7',
-    src: '/assets/creative/juraa/j7.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j7.PNG'),
     title: 'Caregiver Verification & Sync Confirmation',
     titleArabic: 'تأكيد دائرة الرعاية ومزامنة الجرعات',
     description: 'Confirmation state showing synchronous caretaker acknowledgment when family members complete their schedule.',
-    badge: 'SCREEN 07 · CARE VERIFICATION',
+    badge: 'SCREEN 05 · CARE VERIFICATION',
   },
   {
     id: 'j8',
-    src: '/assets/creative/juraa/j8.PNG',
+    src: getAssetUrl('/assets/creative/juraa/j8.PNG'),
     title: 'Full Product Design System & Brand Asset Suite',
     titleArabic: 'منظومة التصميم المتكاملة وهوية التطبيق',
     description: 'Comprehensive mobile interface composition highlighting typography balance, component states, and empathetic art direction.',
-    badge: 'SCREEN 08 · DESIGN SYSTEM',
+    badge: 'SCREEN 06 · DESIGN SYSTEM',
   },
 ];
 
@@ -247,7 +232,7 @@ export const JuraaAppScreens: React.FC<{ className?: string }> = ({ className = 
 
   return (
     <div className={`space-y-6 ${className}`}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {JURAA_AUTHENTIC_APP_SCREENS.map((screen) => (
           <div
             key={screen.id}

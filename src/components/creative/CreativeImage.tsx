@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Maximize2, X, Image as ImageIcon } from 'lucide-react';
 import { soundEngine } from '../../utils/soundEngine';
+import { getAssetUrl } from '../../utils/assetUrl';
 
 interface CreativeImageProps {
   src: string;
@@ -17,13 +18,9 @@ interface CreativeImageProps {
   badge?: string;
 }
 
-// Ensure runtime URLs always point to public /assets rather than /src/assets
+// Ensure runtime URLs always point to public /assets with Vite base path prefix
 const cleanAssetPath = (path: string): string => {
-  if (!path) return '';
-  if (path.startsWith('/src/assets/')) {
-    return path.replace('/src/assets/', '/assets/');
-  }
-  return path;
+  return getAssetUrl(path);
 };
 
 export const CreativeImage: React.FC<CreativeImageProps> = ({

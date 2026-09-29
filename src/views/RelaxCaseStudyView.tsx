@@ -4,6 +4,7 @@ import { PROJECTS } from '../data/projectsData';
 import { RelaxLogo } from '../components/RelaxLogo';
 import { soundEngine } from '../utils/soundEngine';
 import { MonogramN } from '../components/MonogramN';
+import { getAssetUrl } from '../utils/assetUrl';
 import {
   ArrowLeft,
   ArrowRight,
@@ -694,7 +695,7 @@ export const RelaxCaseStudyView: React.FC<RelaxCaseStudyViewProps> = ({
                   {activeTouchpoint.image ? (
                     <div className="w-full h-full relative">
                       <img
-                        src={activeTouchpoint.image}
+                        src={getAssetUrl(activeTouchpoint.image)}
                         alt={activeTouchpoint.title}
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 min-h-[260px]"
@@ -753,7 +754,7 @@ export const RelaxCaseStudyView: React.FC<RelaxCaseStudyViewProps> = ({
                 >
                   <div className="aspect-[4/5] overflow-hidden relative">
                     <img
-                      src="/assets/images/relax_mockup_elevator.png"
+                      src={getAssetUrl('/assets/images/relax_mockup_elevator.png')}
                       alt="Relax Café Level Seven Architectural Elevator Signage"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -784,7 +785,7 @@ export const RelaxCaseStudyView: React.FC<RelaxCaseStudyViewProps> = ({
                 >
                   <div className="aspect-[4/5] overflow-hidden relative">
                     <img
-                      src="/assets/images/relax_mockup_takeaway_cup.png"
+                      src={getAssetUrl('/assets/images/relax_mockup_takeaway_cup.png')}
                       alt="Relax Café Takeaway Drinkware System"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -815,7 +816,7 @@ export const RelaxCaseStudyView: React.FC<RelaxCaseStudyViewProps> = ({
                 >
                   <div className="aspect-[4/5] overflow-hidden relative">
                     <img
-                      src="/assets/images/relax_mockup_table_setting.png"
+                      src={getAssetUrl('/assets/images/relax_mockup_table_setting.png')}
                       alt="Relax Café Embossed Leather Menu Folio"
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
