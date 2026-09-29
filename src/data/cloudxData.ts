@@ -170,7 +170,7 @@ export const CLOUDX_CASE_STUDY: CloudXCaseStudyData = {
     projectStatus: 'Strategy and execution plans developed.',
     introduction:
       'CloudX provides digital infrastructure and post-launch technical support. I developed a strategic marketing framework to clarify its role in the market and connect that position to audience targeting, campaign planning, lead generation, sales follow-up and growth through existing customer relationships. The work resulted in two connected strategic systems: a go-to-market campaign plan built around "The Second Launch" and a client-led growth strategy for turning customer success into proof, warm introductions and qualified pipeline.',
-    heroImage: '/src/assets/images/cloudx_b2b_campaign_1790649718333.jpg',
+    heroImage: '/src/assets/images/cloudx.png',
   },
   challenge: {
     sectionLabel: '01 / THE CHALLENGE',

@@ -16,7 +16,7 @@ const MOCKUP_CANDIDATES = [
 ];
 
 const LOGO_CANDIDATES = [
-  '/src/assets/images/juraa_logo.png',
+  '/src/assets/creative/juraa/logo.png',
   '/src/assets/images/6566488C-687E-41B0-B504-4BD967C33ED7.png',
   '/src/assets/images/0DBB20B2-8170-4520-BED2-4F6343639EDB.png',
 ];
